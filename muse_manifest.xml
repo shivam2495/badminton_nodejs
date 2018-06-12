@@ -1,0 +1,61 @@
+<manifest alg="2" build="2017.0.0.363" opt="false" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster" exportTarget="other" domain="badminton.com" resolutions="1x" timestamp="1522808406653">
+  <folder name="css">
+    <file name="site_global.css" crc="443350757"/>
+    <file name="master_a-master.css" crc="505742877" ref="home:player:video-summary:index"/>
+    <file name="home.css" crc="3907640570" ref="home"/>
+    <file name="iefonts_home.css" crc="421504729" ref="home"/>
+    <file name="player.css" crc="3855062097" ref="player"/>
+    <file name="iefonts_player.css" crc="184104986" ref="player"/>
+    <file name="video-summary.css" crc="4204302992" ref="video-summary"/>
+    <file name="iefonts_video-summary.css" crc="3758371421" ref="video-summary"/>
+    <file name="index.css" crc="48055223" ref="index"/>
+    <file name="iefonts_index.css" crc="108544977" ref="index"/>
+  </folder>
+  <folder name="scripts">
+    <file name="jquery-1.8.3.min.js" crc="209076791" ref="home:player:video-summary:index"/>
+    <file name="museutils.js" crc="163421577" ref="home:player:video-summary:index"/>
+    <file name="whatinput.js" crc="86476730" ref="home:player:video-summary:index"/>
+    <file name="museconfig.js" crc="168988563" ref="home:player:video-summary:index"/>
+    <file name="jquery.watch.js" crc="104486786" ref="home:player:video-summary:index"/>
+    <file name="require.js" crc="244322403" ref="home:player:video-summary:index"/>
+    <file name="webpro.js" crc="3848665353" ref="player"/>
+    <file name="form_check.php" crc="158155501" ref="player"/>
+    <file name="form_throttle.php" crc="3992970984" ref="player"/>
+    <file name="form_process.php" crc="4078697226" ref="player"/>
+    <file name="form-u628.php" crc="4262135663" ref="player"/>
+  </folder>
+  <folder name="images">
+    <file name="logo-crop-u179.png" crc="349396208" ref="home:player:video-summary:index"/>
+    <file name="bg-crop-u1580.png" crc="4197570884" ref="home:player:video-summary:index"/>
+    <file name="bacth.png" crc="3995050395" seo="true" ref="home"/>
+    <file name="pic2-crop-u288.jpg" crc="3922340821" ref="home"/>
+    <file name="playerpic.png" crc="3833050519" seo="true" ref="home"/>
+    <file name="playerpic2.png" crc="483871048" seo="true" ref="home"/>
+    <file name="bacth2.png" crc="3797845862" seo="true" ref="home"/>
+    <file name="pic2.jpg" crc="426218372" seo="true" ref="home"/>
+    <file name="iiitlogo.png" crc="17564724" seo="true" ref="home:player:video-summary:index"/>
+    <file name="playerpic3.png" crc="3791393729" seo="true" ref="player:video-summary"/>
+    <file name="hiticon.png" crc="394118526" seo="true" ref="player:video-summary"/>
+    <file name="uploadicon.png" crc="22299909" seo="true" ref="player:video-summary"/>
+    <file name="icon1.jpg" crc="341335211" seo="true" ref="player"/>
+    <file name="icon2.jpg" crc="346280481" seo="true" ref="player"/>
+    <file name="arrowleft.jpg" crc="4265692179" seo="true" ref="player"/>
+    <file name="video.jpg" crc="4117028267" seo="true" ref="player"/>
+    <file name="arrow.jpg" crc="3967511024" seo="true" ref="player"/>
+    <file name="search.jpg" crc="374828567" seo="true" ref="player"/>
+    <file name="video2.jpg" crc="320465499" seo="true" ref="player"/>
+    <file name="scroll.jpg" crc="3876667275" seo="true" ref="player"/>
+    <file name="video3.jpg" crc="533377228" seo="true" ref="video-summary"/>
+    <file name="arrow2.jpg" crc="3918831539" seo="true" ref="video-summary"/>
+    <file name="open.jpg" crc="219236349" seo="true" ref="video-summary"/>
+    <file name="close.jpg" crc="183024013" seo="true" ref="video-summary"/>
+    <file name="icon3.png" crc="161449748" seo="true" ref="video-summary"/>
+    <file name="icon4.png" crc="3813278107" seo="true" ref="video-summary"/>
+    <file name="icon5.png" crc="202233234" seo="true" ref="video-summary"/>
+    <file name="pic3-crop-u1387.jpg" crc="530982752" ref="video-summary"/>
+  </folder>
+  <file name="home.html" crc="258695235" seo="true" mt="1522807424732" redirect="true"/>
+  <file name="player.html" crc="474532475" seo="true" mt="1522807424732" redirect="true"/>
+  <file name="video-summary.html" crc="4193313350" seo="true" mt="1522807424732" redirect="true"/>
+  <file name="index.html" crc="380150705" seo="true" mt="1522808315546" redirect="true"/>
+</manifest>
