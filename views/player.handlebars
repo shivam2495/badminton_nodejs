@@ -41,9 +41,6 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
       <div class="clip_frame grpelem" id="u179"><!-- image -->
        <img class="block" id="u179_img" src="images/logo-crop-u179.png?crc=349396208" alt="" data-image-width="109" data-image-height="46"/>
       </div>
-      <div class="clearfix grpelem" id="u181-4"><!-- content -->
-       <p>IIIT-H BADMINTON ACADEMY</p>
-      </div>
      </div>
      <div class="clip_frame grpelem" id="u1580"><!-- image -->
       <img class="block" id="u1580_img" src="images/bg-crop-u1580.png?crc=4197570884" alt="" data-image-width="1030" data-image-height="510"/>
@@ -118,58 +115,28 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
         <p>COACH RECOMMENDATIONS</p>
        </div>
        <div class="shadow clearfix colelem" id="u618">
-        <div class="clearfix grpelem" id="pu773-4">
-        </div>
+         <div class="clip_frame colelem" id="u871">
+          <ul id="rig">
+          </ul><!-- image -->
+         </div>
        </div>
        <div class="clearfix colelem" id="u906-4"><!-- content -->
         <p>COACH RESOURCES</p>
        </div>
        <div class="shadow clearfix colelem" id="u901"><!-- group -->
-        <div class="clearfix grpelem" id="ppbuttonu955"><!-- column -->
-         <div class="clearfix colelem" id="pbuttonu955"><!-- group -->
-          <div class="Button clearfix grpelem" id="buttonu955"><!-- container box -->
-           <div class="clearfix grpelem" id="u958-4"><!-- content -->
-            <p>Videos</p>
-           </div>
-           <div class="clip_frame grpelem" id="u973"><!-- image -->
-            <img class="block" id="u973_img" src="images/arrow.jpg?crc=3967511024" alt="" data-image-width="14" data-image-height="8"/>
-           </div>
-          </div>
-          <div class="Button clearfix grpelem" id="buttonu983"><!-- container box -->
-           <div class="clearfix grpelem" id="u984-4"><!-- content -->
-            <p>Search Video</p>
-           </div>
-           <div class="clip_frame grpelem" id="u1001"><!-- image -->
-            <img class="block" id="u1001_img" src="images/search.jpg?crc=374828567" alt="" data-image-width="19" data-image-height="20"/>
-           </div>
-          </div>
-         </div>
+        <div class="clearfix grpelem" id="ppbuttonu955">
          <div class="clip_frame colelem" id="u1011"><!-- image -->
-          <img class="block" id="u1011_img" src="images/video2.jpg?crc=320465499" alt="" data-image-width="691" data-image-height="250"/>
+        <ul id="rig1">
+          </ul>
          </div>
-        </div>
-        <div class="clip_frame grpelem" id="u1021"><!-- image -->
-         <img class="block" id="u1021_img" src="images/scroll.jpg?crc=3876667275" alt="" data-image-width="13" data-image-height="272"/>
         </div>
        </div>
       </div>
      </div>
-     <form class="form-grp clearfix grpelem" id="widgetu628" method="post" enctype="multipart/form-data" action="scripts/form-u628.php"><!-- none box -->
-      <div class="clearfix grpelem" id="u640-4"><!-- content -->
-       <p>Submitting Form...</p>
-      </div>
-      <div class="clearfix grpelem" id="u638-4"><!-- content -->
-       <p>The server encountered an error.</p>
-      </div>
-      <div class="clearfix grpelem" id="u637-4"><!-- content -->
-       <p>Form received.</p>
-      </div>
-     </form>
     </div>
     <div class="verticalspacer" data-offset-top="1661" data-content-above-spacer="1661" data-content-below-spacer="143"></div>
     <div class="clearfix colelem" id="u182-6"><!-- content -->
      <p>Copyright © 2018, International Institute of Information Technology, Hyderabad. All rights reserved</p>
-     <p>Powered by</p>
     </div>
     <div class="clip_frame colelem" id="u203"><!-- image -->
      <img class="block" id="u203_img" src="images/iiitlogo.png?crc=17564724" alt="" data-image-width="118" data-image-height="61"/>
@@ -195,5 +162,132 @@ Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
 </script>
   <!-- RequireJS script -->
   <script src="scripts/require.js?crc=244322403" type="text/javascript" async data-main="scripts/museconfig.js?crc=168988563" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script>
+   
+
+
+
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+   <script>
+    $.getJSON("recommendations/library.json", function(json) {
+      for (var i = 0; i < json.length; i++) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        var att = document.createAttribute("class");       // Create a "class" attribute
+        att.value = "rig-cell";                           // Set the value of the class attribute
+        a.setAttributeNode(att);      
+        var att2 = document.createAttribute("href");       // Create a "class" attribute
+        att2.value = "video-summary.html";                           // Set the value of the class attribute
+        a.setAttributeNode(att2); 
+        var img = document.createElement("img");
+        var att3 = document.createAttribute("class");       // Create a "class" attribute
+        att3.value = "rig-img";                           // Set the value of the class attribute
+        img.setAttributeNode(att3);
+        var att4 = document.createAttribute("src");       // Create a "class" attribute
+        att4.value = "video_thumbnails/"+json[i].link+".png";                           // Set the value of the class attribute
+        img.setAttributeNode(att4);
+        var span1 = document.createElement("span");
+        var att5 = document.createAttribute("class");       // Create a "class" attribute
+        att5.value = "rig-overlay";                           // Set the value of the class attribute
+        span1.setAttributeNode(att5);
+        var span2 = document.createElement("span");
+        var att6 = document.createAttribute("class");       // Create a "class" attribute
+        att6.value = "rig-text";                           // Set the value of the class attribute
+        span2.setAttributeNode(att6);
+        var desc = document.createTextNode(json[i].name);
+        span2.appendChild(desc);
+        var chk = document.createElement("input");
+        var att7 = document.createAttribute("name");       // Create a "class" attribute
+        att7.value = "recommended";                           // Set the value of the class attribute
+        chk.setAttributeNode(att7);
+        var att8 = document.createAttribute("type");       // Create a "class" attribute
+        att8.value = "checkbox";                           // Set the value of the class attribute
+        chk.setAttributeNode(att8);
+        var att9 = document.createAttribute("value");       // Create a "class" attribute
+        att9.value = json[i].name+" "+json[i].link;                           // Set the value of the class attribute
+        chk.setAttributeNode(att9);
+        a.appendChild(img);
+        a.appendChild(span1);
+        a.appendChild(span2);
+        li.appendChild(a);
+        li.appendChild(chk);
+        var ul1 = document.getElementById("rig1");
+        ul1.appendChild(li);
+      }
+      var div1 = document.getElementById("u1011");
+      var btn = document.createElement("button");
+      var att11 = document.createAttribute("class");       // Create a "class" attribute
+      att11.value = "button";                           // Set the value of the class attribute
+      btn.setAttributeNode(att11);
+      var att12 = document.createAttribute("onclick");       // Create a "class" attribute
+      att12.value = "printChecked()";                           // Set the value of the class attribute
+      btn.setAttributeNode(att12);
+      var desc = document.createTextNode("Recommend selected videos");
+      btn.appendChild(desc);
+      div1.appendChild(btn);
+    });
+    $.getJSON("recommendations/shivam_recommendations.json", function(json) {
+      for (var i = 0; i < json.length; i++) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        var att = document.createAttribute("class");       // Create a "class" attribute
+        att.value = "rig-cell";                           // Set the value of the class attribute
+        a.setAttributeNode(att);      
+        var att2 = document.createAttribute("href");       // Create a "class" attribute
+        att2.value = "video-summary.html";                           // Set the value of the class attribute
+        a.setAttributeNode(att2); 
+        var img = document.createElement("img");
+        var att3 = document.createAttribute("class");       // Create a "class" attribute
+        att3.value = "rig-img";                           // Set the value of the class attribute
+        img.setAttributeNode(att3);
+        var att4 = document.createAttribute("src");       // Create a "class" attribute
+        att4.value = "video_thumbnails/"+json[i].link+".png";                           // Set the value of the class attribute
+        img.setAttributeNode(att4);
+        var span1 = document.createElement("span");
+        var att5 = document.createAttribute("class");       // Create a "class" attribute
+        att5.value = "rig-overlay";                           // Set the value of the class attribute
+        span1.setAttributeNode(att5);
+        var span2 = document.createElement("span");
+        var att6 = document.createAttribute("class");       // Create a "class" attribute
+        att6.value = "rig-text";                           // Set the value of the class attribute
+        span2.setAttributeNode(att6);
+        var desc = document.createTextNode(json[i].name);
+        span2.appendChild(desc);
+        a.appendChild(img);
+        a.appendChild(span1);
+        a.appendChild(span2);
+        li.appendChild(a);
+        var ul= document.getElementById("rig");
+        ul.appendChild(li);
+      }
+    });
+  </script>
+  <script type="text/javascript">
+  function printChecked(){
+    var items=document.getElementsByName('recommended');
+    var selectedItems="";
+    var jsn = []
+    for(var i=0; i<items.length; i++){
+      if(items[i].type=='checkbox' && items[i].checked==true){
+        //selectedItems+=items[i].value+"\n";
+         var obj = new Object();
+         obj.name = (items[i].value).split(" ")[0];
+         obj.link  = (items[i].value).split(" ")[1];
+         var jsonString= JSON.stringify(obj);
+         jsn.push(jsonString)
+      }
+    }
+    console.log(jsn);
+  }     
+  </script>
+
+
+
+
+
+
+
+
+
    </body>
 </html>

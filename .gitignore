@@ -52,6 +52,7 @@ bower_components
 build/Release
 
 # Dependency directories
+vendor/
 videos/
 node_modules/
 jspm_packages/
