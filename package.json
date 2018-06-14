@@ -1,0 +1,31 @@
+{
+  "name": "badminton_analytics",
+  "version": "1.0.0",
+  "description": "Video analysis to generate player metrics",
+  "main": "srvr.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.11",
+    "mysql": "^2.15.0",
+    "nodemon": "^1.17.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivam2495/badminton_nodejs.git"
+  },
+  "keywords": [
+    "cv"
+  ],
+  "author": "iiit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shivam2495/badminton_nodejs/issues"
+  },
+  "homepage": "https://github.com/shivam2495/badminton_nodejs#readme"
+}
