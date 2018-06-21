@@ -118,7 +118,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
     <video id="myVideo" width="600" height="400" controls>{{{vid_link}}}</video>
     <!-- <video id="myVideo" width="600" height="400" controls></video> -->
   </div>
-  <div class="clip_frame colelem" style="overflow-y:scroll; height:250px; width:600px; margin-left:70px" id="rally_json">
+  <div class="clip_frame colelem" id="rally_json">
   </div>
 </div>
 
@@ -185,10 +185,46 @@ Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
         var a = document.createElement("a");
         var att = document.createAttribute("class");       
         att.value = "rig-cell";                           
-        a.setAttributeNode(att);      
-        var att2 = document.createAttribute("href");      
-        att2.value = "video-summary.html";                
-        a.setAttributeNode(att2); 
+        a.setAttributeNode(att);
+        var att1 = document.createAttribute("id");     
+        att1.value = json[i].link;                          
+        a.setAttributeNode(att1);
+        a.addEventListener("click", function(){
+          document.getElementById("myVideo").remove();
+          var new_vid = document.createElement("video");
+          var att1 = document.createAttribute("id");
+          att1.value = "myVideo";
+          new_vid.setAttributeNode(att1);
+          var att2 = document.createAttribute("width");     
+          att2.value = "600";                          
+          new_vid.setAttributeNode(att2);
+          var att3 = document.createAttribute("height");     
+          att3.value = "400";                          
+          new_vid.setAttributeNode(att3);
+          var att4 = document.createAttribute("controls");     
+          new_vid.setAttributeNode(att4);
+          var vid_src = document.createElement("source");
+          var att5 = document.createAttribute("src");
+          att5.value = "videos/"+this.id+".mp4";                          
+          vid_src.setAttributeNode(att5);
+          var att6 = document.createAttribute("type");     
+          att6.value = "video/mp4";   
+          vid_src.setAttributeNode(att6);
+          new_vid.appendChild(vid_src);
+          document.getElementById("u1212").appendChild(new_vid);
+          document.getElementById("rally_json").remove();
+          var rally_json = document.createElement("div");
+          var att7 = document.createAttribute("class");
+          att7.value = "clip_frame colelem";
+          rally_json.setAttributeNode(att7);
+          var att8 = document.createAttribute("id");     
+          att8.value = "rally_json";                          
+          rally_json.setAttributeNode(att8);
+          document.getElementById("u1152").appendChild(rally_json);
+          $.getJSON("output/"+this.id+".json", function(json){
+            populate_json(json);
+          });
+        });
         var img = document.createElement("img");
         var att3 = document.createAttribute("class");     
         att3.value = "rig-img";                           
@@ -242,10 +278,46 @@ Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
         var a = document.createElement("a");
         var att = document.createAttribute("class");     
         att.value = "rig-cell";                          
-        a.setAttributeNode(att);      
-        var att2 = document.createAttribute("href");     
-        att2.value = "video-summary.html";                         
-        a.setAttributeNode(att2); 
+        a.setAttributeNode(att);
+        var att1 = document.createAttribute("id");     
+        att1.value = json[i].link;                          
+        a.setAttributeNode(att1);
+        a.addEventListener("click", function(){
+          document.getElementById("myVideo").remove();
+          var new_vid = document.createElement("video");
+          var att1 = document.createAttribute("id");
+          att1.value = "myVideo";
+          new_vid.setAttributeNode(att1);
+          var att2 = document.createAttribute("width");     
+          att2.value = "600";                          
+          new_vid.setAttributeNode(att2);
+          var att3 = document.createAttribute("height");     
+          att3.value = "400";                          
+          new_vid.setAttributeNode(att3);
+          var att4 = document.createAttribute("controls");     
+          new_vid.setAttributeNode(att4);
+          var vid_src = document.createElement("source");
+          var att5 = document.createAttribute("src");
+          att5.value = "videos/"+this.id+".mp4";                          
+          vid_src.setAttributeNode(att5);
+          var att6 = document.createAttribute("type");     
+          att6.value = "video/mp4";   
+          vid_src.setAttributeNode(att6);
+          new_vid.appendChild(vid_src);
+          document.getElementById("u1212").appendChild(new_vid);
+          document.getElementById("rally_json").remove();
+          var rally_json = document.createElement("div");
+          var att7 = document.createAttribute("class");
+          att7.value = "clip_frame colelem";
+          rally_json.setAttributeNode(att7);
+          var att8 = document.createAttribute("id");     
+          att8.value = "rally_json";                          
+          rally_json.setAttributeNode(att8);
+          document.getElementById("u1152").appendChild(rally_json);
+          $.getJSON("output/"+this.id+".json", function(json){
+            populate_json(json);
+          });
+        });
         var img = document.createElement("img");
         var att3 = document.createAttribute("class");      
         att3.value = "rig-img";                           
@@ -271,7 +343,7 @@ Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
         ul.appendChild(li);
       }
     });
-    $.getJSON("output/Wang-v-Nehwal.json", function(json) {
+    function populate_json(json){
       json.sort(function(a, b){
         var keyA = a.Rally_number, keyB = b.Rally_number;
         if(keyA < keyB) return -1;
@@ -367,6 +439,9 @@ Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
           });
         }
       }
+    }
+    $.getJSON("output/Wang-v-Nehwal.json", function(json){
+      populate_json(json);
     });
   </script>
   <script type="text/javascript">
