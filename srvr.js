@@ -52,25 +52,25 @@ app.post('/login', (req, res)=>{
 		style2="Forehand";
 		style3="Backhand";
 		style4="Lob";
-			res.render('player', {
-			name :name,
-			rank :rank,
-			s1 :backhand,
-			s2 :forehand,
-			s3 :lob,
-			s4 :smash,
-			style1 :style1,
-			style2 :style2,
-			style3 :style3,
-			style4 :style4,
-			dominance :dominance,
-			strokes :strokes,
-			serve :serve,
-			speed :speed,
-			react :react,
-			frequency :frequency,
-			steps :steps,
-			video :video
+		res.render('player', {
+		name :name,
+		rank :rank,
+		s1 :smash,
+		s2 :forehand,
+		s3 :backhand,
+		s4 :lob,
+		style1 :style1,
+		style2 :style2,
+		style3 :style3,
+		style4 :style4,
+		dominance :dominance,
+		strokes :strokes,
+		serve :serve,
+		speed :speed,
+		react :react,
+		frequency :frequency,
+		steps :steps,
+		vid_link : "<source src=\"videos/"+"Wang-v-Nehwal.mp4"+"\" type=\"video/mp4\">"
 		});
 	});
 });

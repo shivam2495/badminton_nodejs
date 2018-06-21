@@ -68,12 +68,12 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
   <div class="clearfix colelem" id="ppu509-4"><!-- group -->
    <div class="clearfix grpelem" id="pu509-4"><!-- column -->
     <div class="clearfix colelem" id="u509-4"><!-- content -->
-     <p>STYLE</p>
+     <p><b>STYLE</b></p>
    </div>
    <a class="nonblock nontext clearfix colelem" id="u518-5" ><!-- content --><p id="u518-3"><span id="u518">{{s1}}</span><span id="u518-2">%</span></p></a>
  </div>
  <div class="clearfix grpelem" id="u512-4"><!-- content -->
-  <p>GAME</p>
+  <p><b>GAME</b></p>
 </div>
 <div class="clip_frame grpelem" id="u578"><!-- image -->
   <img class="block" id="u578_img" src="images/icon1.jpg?crc=341335211" alt="" data-image-width="161" data-image-height="171"/>
@@ -84,15 +84,15 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 </div>
 <div class="clearfix grpelem" id="pu515-4"><!-- column -->
   <div class="clearfix colelem" id="u515-4"><!-- content -->
-   <p>AGILITY</p>
+   <p><b>AGILITY</b></p>
  </div>
  <a class="nonblock nontext clearfix colelem" id="u530-5"><!-- content --><p id="u530-3"><span id="u530">{{speed}}</span><span id="u530-2">m/s</span></p></a>
 </div>
 </div>
 <div class="clearfix colelem" id="pu521-4"><!-- group -->
  <a class="nonblock nontext clearfix grpelem" id="u521-4"><!-- content --><p>{{style1}}</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u524-4"><!-- content --><p>DOMINANCE</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u533-4"><!-- content --><p>SPEED</p></a>
+ <a class="nonblock nontext clearfix grpelem" id="u524-4"><!-- content --><p>Dominance</p></a>
+ <a class="nonblock nontext clearfix grpelem" id="u533-4"><!-- content --><p>Speed</p></a>
 </div>
 <div class="colelem" id="u563"><!-- simple frame --></div>
 <div class="colelem" id="u572"><!-- simple frame --></div>
@@ -101,12 +101,12 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
  <a class="nonblock nontext clearfix grpelem" id="u536-6" ><!-- content --><p><b>{{s2}}%</b></p><br><p>{{style2}}</p></a>
  <a class="nonblock nontext clearfix grpelem" id="u539-6" ><!-- content --><p><b>{{s3}}%</b></p><br><p>{{style3}}</p></a>
  <a class="nonblock nontext clearfix grpelem" id="u542-6" ><!-- content --><p><b>{{s4}}%</b></p><br><p>{{style4}}</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u545-6" ><!-- content --><p><b>{{strokes}}</b></p><br><p>STROKES/POINT</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u548-6" ><!-- content --><p><b>{{serve}} s</b></p><br><p>SERVE DELAY</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u551-6" ><!-- content --><p><b>{{speed}} m/s</b></p><br><p>SPEED</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u560-6" ><!-- content --><p><b>{{react}} s</b></p><br><p>REACT TIME</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u557-6" ><!-- content --><p><b>{{frequency}}</b></p><br><p>FREQUENCY OF MOVEMENT</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u554-6" ><!-- content --><p><b>{{steps}}</b></p><br><p>STEPS/ POINT</p></a>
+ <a class="nonblock nontext clearfix grpelem" id="u545-6" ><!-- content --><p><b>{{strokes}}</b></p><br><p>Strokes/ Point</p></a>
+ <a class="nonblock nontext clearfix grpelem" id="u548-6" ><!-- content --><p><b>{{serve}} s</b></p><br><p>Serve React Time</p></a>
+ <a class="nonblock nontext clearfix grpelem" id="u551-6" ><!-- content --><p><b>{{speed}} m/s</b></p><br><p>Speed</p></a>
+ <a class="nonblock nontext clearfix grpelem" id="u560-6" ><!-- content --><p><b>{{react}} s</b></p><br><p>React Time</p></a>
+ <a class="nonblock nontext clearfix grpelem" id="u557-6" ><!-- content --><p><b>{{frequency}}</b></p><br><p>Frequency</p></a>
+ <a class="nonblock nontext clearfix grpelem" id="u554-6" ><!-- content --><p><b>{{steps}}</b></p><br><p>Steps/Point</p></a>
 </div>
 </div>
 
@@ -115,7 +115,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 </div>
 <div class="shadow clearfix colelem" id="u1152">
   <div class="clip_frame colelem" id="u1212"><!-- image -->
-    <video id="myVideo" width="600" height="400" controls><source src="videos/Baun-Augustyn-GrpG-LondonOlympics-2012.mp4" type="video/mp4"></video>
+    <video id="myVideo" width="600" height="400" controls>{{{vid_link}}}</video>
     <!-- <video id="myVideo" width="600" height="400" controls></video> -->
   </div>
   <div class="clip_frame colelem" style="overflow-y:scroll; height:250px; width:600px; margin-left:70px" id="rally_json">
@@ -271,7 +271,7 @@ Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
         ul.appendChild(li);
       }
     });
-    $.getJSON("output/Baun-Augustyn-GrpG-LondonOlympics-2012.json", function(json) {
+    $.getJSON("output/Wang-v-Nehwal.json", function(json) {
       json.sort(function(a, b){
         var keyA = a.Rally_number, keyB = b.Rally_number;
         if(keyA < keyB) return -1;
@@ -279,15 +279,29 @@ Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
         return 0;
       });
       var fr=json[0].frame_rate;
-      var x = 0, y=0;
+      var x = 0, y=0, set=0;
       var vid= document.getElementById("myVideo");
       for (var i = 1; i < json.length; i++) {
         var shot=json[i].Shots;
         var btn = document.createElement("button");
-        var z = Math.round(Math.random());
-        x = x + z;
-        y = y + 1 - z;
-        var node = document.createTextNode("Score: " + x + '-' + y);
+        if(i>1){
+          if(x>20 || y>20){
+            set++;
+            x=0;
+            y=0;
+          }
+          var prev_win = shot[0].Shot_type;
+          var prev_win1 = prev_win.split("_")[0];
+          var prev_win2 = prev_win.split("_")[1];
+          if(set%2==0){
+            if(prev_win == "Top_Serve" || (prev_win1 == "Bottom" && prev_win2 != "Serve")) x++;
+            else y++;
+          }else{
+            if(prev_win == "Top_Serve" || (prev_win1 == "Bottom" && prev_win2 != "Serve")) y++;
+            else x++;
+          }
+        }
+        var node = document.createTextNode("Score: " + y + '-' + x);
         btn.appendChild(node);
         var att = document.createAttribute("class");      
         att.value = "collapsible";                           
