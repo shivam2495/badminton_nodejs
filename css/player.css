@@ -2,6 +2,14 @@
 #u1212{z-index:55;background-color:transparent;margin-top:22px;position:relative;width:79.36%;margin-left:10.53%;}
 #u1152{z-index:34;box-shadow:0px 0px 8px rgba(0,0,0,0.1),0px 0px 8px rgba(0,0,0,0.1);background-color:#FFFFFF;padding-top:9px;padding-bottom:33.349999999999454px;margin-top:5px;position:relative;width:82.06%;margin-left:9.09%;}
 #rally_json{overflow-y:scroll; height:250px; width:600px; margin-left:70px;}
+.custom-select {
+   float: left;
+   width: 150px;
+}
+.custom-select1 {
+   float: right;
+   width: 150px;
+}
 .button {
     background-color: #4CAF50; /* Green */
     border: none;

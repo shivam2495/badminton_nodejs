@@ -4,463 +4,155 @@
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
   <meta name="generator" content="2017.0.0.363"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-<!--   <script type="text/javascript">
-   // Update the 'nojs'/'js' class on the html node
-document.documentElement.className = document.documentElement.className.replace(/\bnojs\b/g, 'js');
-
-// Check that all required assets are uploaded and up-to-date
-if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["museutils.js", "museconfig.js", "jquery.watch.js", "require.js", "webpro.js", "player.css"], "outOfDate":[]};
-</script> -->
-
-<title>player</title>
-<!-- CSS -->
-<link rel="stylesheet" type="text/css" href="css/site_global.css?crc=443350757"/>
-<link rel="stylesheet" type="text/css" href="css/master_a-master.css?crc=505742877"/>
-<link rel="stylesheet" type="text/css" href="css/player.css?crc=3855062097" id="pagesheet"/>
-<!-- IE-only CSS -->
-  <!--[if lt IE 9]>
-  <link rel="stylesheet" type="text/css" href="css/iefonts_player.css?crc=184104986"/>
-<![endif]-->
-<!-- Other scripts -->
- <!--  <script type="text/javascript">
-   var __adobewebfontsappname__ = "muse";
-</script>
-  <script type="text/javascript">
-   document.write('\x3Cscript src="' + (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//webfonts.creativecloud.com/open-sans:i4,n4:default;lato:n7,n4,n9,i4:default.js" type="text/javascript">\x3C/script>');
- </script> -->
+  <title>Player Home</title>
+  <link rel="stylesheet" type="text/css" href="css/site_global.css?crc=443350757"/>
+  <link rel="stylesheet" type="text/css" href="css/master_a-master.css?crc=505742877"/>
+  <link rel="stylesheet" type="text/css" href="css/player.css?crc=3855062097"/>
+  <script src="scripts/jquery-3.3.1.min.js"></script>
+  <script src="scripts/player.js"></script>
 </head>
 <body>
-
-  <div class="clearfix borderbox" id="page"><!-- column -->
-   <div class="position_content" id="page_position_content">
-    <div class="clearfix colelem" id="pu177"><!-- group -->
-     <div class="clearfix grpelem" id="u177"><!-- group -->
-      <div class="clip_frame grpelem" id="u179"><!-- image -->
-       <img class="block" id="u179_img" src="images/logo-crop-u179.png?crc=349396208" alt="" data-image-width="109" data-image-height="46"/>
-     </div>
-   </div>
-   <div class="clip_frame grpelem" id="u1580"><!-- image -->
-    <img class="block" id="u1580_img" src="images/bg-crop-u1580.png?crc=4197570884" alt="" data-image-width="1030" data-image-height="510"/>
-  </div>
-  <div class="clearfix grpelem" id="u1499"><!-- column -->
-    <div class="position_content" id="u1499_position_content">
-     <div class="clearfix colelem" id="ppu474"><!-- group -->
-      <div class="clearfix grpelem" id="pu474"><!-- column -->
-       <div class="clip_frame colelem" id="u474"><!-- image -->
-        <img class="block" id="u474_img" src="images/saina07082012.jpg?crc=3791393729" alt="" data-image-width="164" data-image-height="164"/>
+  <div class="clearfix borderbox" id="page">
+    <div class="position_content" id="page_position_content">
+      <div class="clearfix colelem" id="pu177">
+        <div class="clip_frame grpelem" id="u1580">
+          <img class="block" id="u1580_img" src="images/bg-crop-u1580.png?crc=4197570884" data-image-width="1030" data-image-height="510"/>
+        </div>
+        <div class="clearfix grpelem" id="u1499">
+          <div class="position_content" id="u1499_position_content">
+            <div class="clearfix colelem" id="ppu474">
+              <div class="clearfix grpelem" id="pu474">
+                <div class="clip_frame colelem" id="u474">
+                  <img class="block" id="u474_img" src="images/saina07082012.jpg?crc=3791393729" data-image-width="164" data-image-height="164"/>
+                </div>
+                <div class="clearfix colelem" id="u484-4">
+                  <p>{{name}}</p>
+                </div>
+              </div>
+              <div class="clip_frame grpelem" id="u488">
+                <img class="block" id="u488_img" src="images/hiticon.png?crc=394118526" data-image-width="47" data-image-height="73"/>
+              </div>
+              <div class="clearfix grpelem" id="u498-4">
+                <p>Rank </p>
+              </div>
+              <div class="clearfix grpelem" id="u502-4">
+                <p>{{rank}}</p>
+              </div>
+            </div>
+            <div class="shadow clearfix colelem" id="u506">
+              <div class="clearfix colelem" id="ppu509-4">
+                <div class="clearfix grpelem" id="pu509-4">
+                  <div class="clearfix colelem" id="u509-4">
+                    <p><b>STYLE</b></p>
+                  </div>
+                  <a class="nonblock nontext clearfix colelem" id="u518-5" >
+                    <p id="u518-3">
+                      <span id="u518">{{s1}}</span>
+                      <span id="u518-2">%</span>
+                    </p>
+                  </a>
+                </div>
+                <div class="clearfix grpelem" id="u512-4">
+                  <p><b>GAME</b></p>
+                </div>
+                <div class="clip_frame grpelem" id="u578">
+                  <img class="block" id="u578_img" src="images/icon1.jpg?crc=341335211" data-image-width="161" data-image-height="171"/>
+                </div>
+                <a class="nonblock nontext clearfix grpelem" id="u527-5">
+                  <p id="u527-3">
+                    <span id="u527">{{dominance}}</span>
+                    <span id="u527-2"></span>
+                  </p>
+                </a>
+                <div class="clip_frame grpelem" id="u588">
+                  <img class="block" id="u588_img" src="images/icon2.jpg?crc=346280481" data-image-width="100" data-image-height="128"/>
+                </div>
+                <div class="clearfix grpelem" id="pu515-4">
+                  <div class="clearfix colelem" id="u515-4">
+                    <p><b>AGILITY</b></p>
+                  </div>
+                  <a class="nonblock nontext clearfix colelem" id="u530-5">
+                    <p id="u530-3">
+                      <span id="u530">{{speed}}</span>
+                      <span id="u530-2">m/s</span>
+                    </p>
+                  </a>
+                </div>
+              </div>
+              <div class="clearfix colelem" id="pu521-4">
+                <a class="nonblock nontext clearfix grpelem" id="u521-4"><p>{{style1}}</p></a>
+                <a class="nonblock nontext clearfix grpelem" id="u524-4"><p>Dominance</p></a>
+                <a class="nonblock nontext clearfix grpelem" id="u533-4"><p>Speed</p></a>
+              </div>
+              <div class="clearfix colelem" id="pu536-6">
+                <a class="nonblock nontext clearfix grpelem" id="u536-6" ><p><b>{{s2}}%</b></p><br><p>{{style2}}</p></a>
+                <a class="nonblock nontext clearfix grpelem" id="u539-6" ><p><b>{{s3}}%</b></p><br><p>{{style3}}</p></a>
+                <a class="nonblock nontext clearfix grpelem" id="u542-6" ><p><b>{{s4}}%</b></p><br><p>{{style4}}</p></a>
+                <a class="nonblock nontext clearfix grpelem" id="u545-6" ><p><b>{{strokes}}</b></p><br><p>Strokes/ Point</p></a>
+                <a class="nonblock nontext clearfix grpelem" id="u548-6" ><p><b>{{serve}} s</b></p><br><p>Serve React Time</p></a>
+                <a class="nonblock nontext clearfix grpelem" id="u551-6" ><p><b>{{speed}} m/s</b></p><br><p>Speed</p></a>
+                <a class="nonblock nontext clearfix grpelem" id="u560-6" ><p><b>{{react}} s</b></p><br><p>React Time</p></a>
+                <a class="nonblock nontext clearfix grpelem" id="u557-6" ><p><b>{{frequency}}</b></p><br><p>Frequency</p></a>
+                <a class="nonblock nontext clearfix grpelem" id="u554-6" ><p><b>{{steps}}</b></p><br><p>Steps/Point</p></a>
+              </div>
+            </div>
+            <div class="clearfix colelem" id="u623-4">
+              <p>VIDEO</p>
+            </div>
+            <div class="shadow clearfix colelem" id="u1152">
+              <div class="clip_frame colelem" id="u1212">
+                <video id="myVideo" width="600" height="400" controls>{{{vid_link}}}</video>
+              </div>
+              <div class="container">
+                <div class="custom-select">
+                  <select id="ddlViewBy" onchange="myFunction()">
+                    <option>Select Shot</option>
+                    <option value="0">Backhand</option>
+                    <option value="1">Smash</option>
+                    <option value="2">Fronthand</option>
+                    <option value="3">Serve</option>
+                    <option value="4">All</option>
+                  </select>
+                </div>
+                <div class="custom-select1">
+                  <select id="Player" onchange="myFunction()">
+                    <option>Select Player</option>
+                    <option value="0">Top</option>
+                    <option value="1">Bottom</option>
+                  </select>
+                </div>
+              </div>
+              <div class="clip_frame colelem" id="rally_json">
+              </div>
+            </div>
+            <div class="clearfix colelem" id="u623-4">
+              <p>COACH RECOMMENDATIONS</p>
+            </div>
+            <div class="shadow clearfix colelem" id="u618">
+              <div class="clip_frame colelem" id="u871">
+                <ul id="rig"></ul>
+              </div>
+            </div>
+            <div class="clearfix colelem" id="u906-4">
+              <p>COACH RESOURCES</p>
+            </div>
+            <div class="shadow clearfix colelem" id="u901">
+              <div class="clearfix grpelem" id="ppbuttonu955">
+                <div class="clip_frame colelem" id="u1011">
+                  <ul id="rig1"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="clearfix colelem" id="u484-4"><!-- content -->
-        <p>{{name}}</p>
+      <div class="clearfix colelem" id="u182-6">
+        <p>Copyright © 2018, International Institute of Information Technology, Hyderabad. All rights reserved</p>
+      </div>
+      <div class="clip_frame colelem" id="u203">
+        <img class="block" id="u203_img" src="images/iiitlogo.png?crc=17564724" alt="" data-image-width="118" data-image-height="61"/>
       </div>
     </div>
-    <div class="clip_frame grpelem" id="u488"><!-- image -->
-     <img class="block" id="u488_img" src="images/hiticon.png?crc=394118526" alt="" data-image-width="47" data-image-height="73"/>
-   </div>
-   <div class="clearfix grpelem" id="u498-4"><!-- content -->
-     <p>Rank </p>
-   </div>
-   <div class="clearfix grpelem" id="u502-4"><!-- content -->
-     <p>{{rank}}</p>
-   </div>
- </div>
- <div class="shadow clearfix colelem" id="u506"><!-- column -->
-  <div class="clearfix colelem" id="ppu509-4"><!-- group -->
-   <div class="clearfix grpelem" id="pu509-4"><!-- column -->
-    <div class="clearfix colelem" id="u509-4"><!-- content -->
-     <p><b>STYLE</b></p>
-   </div>
-   <a class="nonblock nontext clearfix colelem" id="u518-5" ><!-- content --><p id="u518-3"><span id="u518">{{s1}}</span><span id="u518-2">%</span></p></a>
- </div>
- <div class="clearfix grpelem" id="u512-4"><!-- content -->
-  <p><b>GAME</b></p>
-</div>
-<div class="clip_frame grpelem" id="u578"><!-- image -->
-  <img class="block" id="u578_img" src="images/icon1.jpg?crc=341335211" alt="" data-image-width="161" data-image-height="171"/>
-</div>
-<a class="nonblock nontext clearfix grpelem" id="u527-5"><!-- content --><p id="u527-3"><span id="u527">{{dominance}}</span><span id="u527-2"></span></p></a>
-<div class="clip_frame grpelem" id="u588"><!-- image -->
-  <img class="block" id="u588_img" src="images/icon2.jpg?crc=346280481" alt="" data-image-width="100" data-image-height="128"/>
-</div>
-<div class="clearfix grpelem" id="pu515-4"><!-- column -->
-  <div class="clearfix colelem" id="u515-4"><!-- content -->
-   <p><b>AGILITY</b></p>
- </div>
- <a class="nonblock nontext clearfix colelem" id="u530-5"><!-- content --><p id="u530-3"><span id="u530">{{speed}}</span><span id="u530-2">m/s</span></p></a>
-</div>
-</div>
-<div class="clearfix colelem" id="pu521-4"><!-- group -->
- <a class="nonblock nontext clearfix grpelem" id="u521-4"><!-- content --><p>{{style1}}</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u524-4"><!-- content --><p>Dominance</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u533-4"><!-- content --><p>Speed</p></a>
-</div>
-<div class="colelem" id="u563"><!-- simple frame --></div>
-<div class="colelem" id="u572"><!-- simple frame --></div>
-<div class="colelem" id="u575"><!-- simple frame --></div>
-<div class="clearfix colelem" id="pu536-6"><!-- group -->
- <a class="nonblock nontext clearfix grpelem" id="u536-6" ><!-- content --><p><b>{{s2}}%</b></p><br><p>{{style2}}</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u539-6" ><!-- content --><p><b>{{s3}}%</b></p><br><p>{{style3}}</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u542-6" ><!-- content --><p><b>{{s4}}%</b></p><br><p>{{style4}}</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u545-6" ><!-- content --><p><b>{{strokes}}</b></p><br><p>Strokes/ Point</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u548-6" ><!-- content --><p><b>{{serve}} s</b></p><br><p>Serve React Time</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u551-6" ><!-- content --><p><b>{{speed}} m/s</b></p><br><p>Speed</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u560-6" ><!-- content --><p><b>{{react}} s</b></p><br><p>React Time</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u557-6" ><!-- content --><p><b>{{frequency}}</b></p><br><p>Frequency</p></a>
- <a class="nonblock nontext clearfix grpelem" id="u554-6" ><!-- content --><p><b>{{steps}}</b></p><br><p>Steps/Point</p></a>
-</div>
-</div>
-
-<div class="clearfix colelem" id="u623-4"><!-- content -->
-  <p>VIDEO</p>
-</div>
-<div class="shadow clearfix colelem" id="u1152">
-  <div class="clip_frame colelem" id="u1212"><!-- image -->
-    <video id="myVideo" width="600" height="400" controls>{{{vid_link}}}</video>
-    <!-- <video id="myVideo" width="600" height="400" controls></video> -->
   </div>
-  <div class="clip_frame colelem" id="rally_json">
-  </div>
-</div>
-
-<div class="clearfix colelem" id="u623-4"><!-- content -->
-  <p>COACH RECOMMENDATIONS</p>
-</div>
-<div class="shadow clearfix colelem" id="u618">
- <div class="clip_frame colelem" id="u871">
-  <ul id="rig">
-  </ul><!-- image -->
-</div>
-</div>
-<div class="clearfix colelem" id="u906-4"><!-- content -->
-  <p>COACH RESOURCES</p>
-</div>
-<div class="shadow clearfix colelem" id="u901"><!-- group -->
-  <div class="clearfix grpelem" id="ppbuttonu955">
-   <div class="clip_frame colelem" id="u1011"><!-- image -->
-    <ul id="rig1">
-    </ul>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="verticalspacer" data-offset-top="1661" data-content-above-spacer="1661" data-content-below-spacer="143"></div>
-<div class="clearfix colelem" id="u182-6"><!-- content -->
- <p>Copyright © 2018, International Institute of Information Technology, Hyderabad. All rights reserved</p>
-</div>
-<div class="clip_frame colelem" id="u203"><!-- image -->
- <img class="block" id="u203_img" src="images/iiitlogo.png?crc=17564724" alt="" data-image-width="118" data-image-height="61"/>
-</div>
-</div>
-</div>
-<!-- Other scripts -->
-<!--   <script type="text/javascript">
-   window.Muse.assets.check=function(d){if(!window.Muse.assets.checked){window.Muse.assets.checked=!0;var b={},c=function(a,b){if(window.getComputedStyle){var c=window.getComputedStyle(a,null);return c&&c.getPropertyValue(b)||c&&c[b]||""}if(document.documentElement.currentStyle)return(c=a.currentStyle)&&c[b]||a.style&&a.style[b]||"";return""},a=function(a){if(a.match(/^rgb/))return a=a.replace(/\s+/g,"").match(/([\d\,]+)/gi)[0].split(","),(parseInt(a[0])<<16)+(parseInt(a[1])<<8)+parseInt(a[2]);if(a.match(/^\#/))return parseInt(a.substr(1),
-16);return 0},g=function(g){for(var f=document.getElementsByTagName("link"),h=0;h<f.length;h++)if("text/css"==f[h].type){var i=(f[h].href||"").match(/\/?css\/([\w\-]+\.css)\?crc=(\d+)/);if(!i||!i[1]||!i[2])break;b[i[1]]=i[2]}f=document.createElement("div");f.className="version";f.style.cssText="display:none; width:1px; height:1px;";document.getElementsByTagName("body")[0].appendChild(f);for(h=0;h<Muse.assets.required.length;){var i=Muse.assets.required[h],l=i.match(/([\w\-\.]+)\.(\w+)$/),k=l&&l[1]?
-l[1]:null,l=l&&l[2]?l[2]:null;switch(l.toLowerCase()){case "css":k=k.replace(/\W/gi,"_").replace(/^([^a-z])/gi,"_$1");f.className+=" "+k;k=a(c(f,"color"));l=a(c(f,"backgroundColor"));k!=0||l!=0?(Muse.assets.required.splice(h,1),"undefined"!=typeof b[i]&&(k!=b[i]>>>24||l!=(b[i]&16777215))&&Muse.assets.outOfDate.push(i)):h++;f.className="version";break;case "js":h++;break;default:throw Error("Unsupported file type: "+l);}}d?d().jquery!="1.8.3"&&Muse.assets.outOfDate.push("jquery-1.8.3.min.js"):Muse.assets.required.push("jquery-1.8.3.min.js");
-f.parentNode.removeChild(f);if(Muse.assets.outOfDate.length||Muse.assets.required.length)f="Some files on the server may be missing or incorrect. Clear browser cache and try again. If the problem persists please contact website author.",g&&Muse.assets.outOfDate.length&&(f+="\nOut of date: "+Muse.assets.outOfDate.join(",")),g&&Muse.assets.required.length&&(f+="\nMissing: "+Muse.assets.required.join(",")),alert(f)};location&&location.search&&location.search.match&&location.search.match(/muse_debug/gi)?setTimeout(function(){g(!0)},5E3):g()}};
-var muse_init=function(){require.config({baseUrl:""});require(["jquery","museutils","whatinput","webpro","jquery.watch"],function(d){var $ = d;$(document).ready(function(){try{
-window.Muse.assets.check($);/* body */
-Muse.Utils.transformMarkupToFixBrowserProblemsPreInit();/* body */
-Muse.Utils.prepHyperlinks(true);/* body */
-Muse.Utils.fullPage('#page');/* 100% height page */
-Muse.Utils.initWidget('#widgetu628', ['#bp_infinity'], function(elem) { return new WebPro.Widget.Form(elem, {validationEvent:'submit',errorStateSensitivity:'high',fieldWrapperClass:'fld-grp',formSubmittedClass:'frm-sub-st',formErrorClass:'frm-subm-err-st',formDeliveredClass:'frm-subm-ok-st',notEmptyClass:'non-empty-st',focusClass:'focus-st',invalidClass:'fld-err-st',requiredClass:'fld-err-st',ajaxSubmit:true}); });/* #widgetu628 */
-Muse.Utils.showWidgetsWhenReady();/* body */
-Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
-}catch(b){if(b&&"function"==typeof b.notify?b.notify():Muse.Assert.fail("Error calling selector function: "+b),false)throw b;}})})};
-
-</script>
-<script src="scripts/require.js?crc=244322403" type="text/javascript" async data-main="scripts/museconfig.js?crc=168988563" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script> -->
-
-
-
-
-
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script>
-    $.getJSON("recommendations/library.json", function(json) {
-      for (var i = 0; i < json.length; i++) {
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        var att = document.createAttribute("class");       
-        att.value = "rig-cell";                           
-        a.setAttributeNode(att);
-        var att1 = document.createAttribute("id");     
-        att1.value = json[i].link;                          
-        a.setAttributeNode(att1);
-        a.addEventListener("click", function(){
-          document.getElementById("myVideo").remove();
-          var new_vid = document.createElement("video");
-          var att1 = document.createAttribute("id");
-          att1.value = "myVideo";
-          new_vid.setAttributeNode(att1);
-          var att2 = document.createAttribute("width");     
-          att2.value = "600";                          
-          new_vid.setAttributeNode(att2);
-          var att3 = document.createAttribute("height");     
-          att3.value = "400";                          
-          new_vid.setAttributeNode(att3);
-          var att4 = document.createAttribute("controls");     
-          new_vid.setAttributeNode(att4);
-          var vid_src = document.createElement("source");
-          var att5 = document.createAttribute("src");
-          att5.value = "videos/"+this.id+".mp4";                          
-          vid_src.setAttributeNode(att5);
-          var att6 = document.createAttribute("type");     
-          att6.value = "video/mp4";   
-          vid_src.setAttributeNode(att6);
-          new_vid.appendChild(vid_src);
-          document.getElementById("u1212").appendChild(new_vid);
-          document.getElementById("rally_json").remove();
-          var rally_json = document.createElement("div");
-          var att7 = document.createAttribute("class");
-          att7.value = "clip_frame colelem";
-          rally_json.setAttributeNode(att7);
-          var att8 = document.createAttribute("id");     
-          att8.value = "rally_json";                          
-          rally_json.setAttributeNode(att8);
-          document.getElementById("u1152").appendChild(rally_json);
-          $.getJSON("output/"+this.id+".json", function(json){
-            populate_json(json);
-          });
-        });
-        var img = document.createElement("img");
-        var att3 = document.createAttribute("class");     
-        att3.value = "rig-img";                           
-        img.setAttributeNode(att3);
-        var att4 = document.createAttribute("src");       
-        att4.value = "video_thumbnails/"+json[i].link+".png";                          
-        img.setAttributeNode(att4);
-        var span1 = document.createElement("span");
-        var att5 = document.createAttribute("class");      
-        att5.value = "rig-overlay";                          
-        span1.setAttributeNode(att5);
-        var span2 = document.createElement("span");
-        var att6 = document.createAttribute("class");      
-        att6.value = "rig-text";                          
-        span2.setAttributeNode(att6);
-        var desc = document.createTextNode(json[i].name);
-        span2.appendChild(desc);
-        var chk = document.createElement("input");
-        var att7 = document.createAttribute("name");       
-        att7.value = "recommended";                           
-        chk.setAttributeNode(att7);
-        var att8 = document.createAttribute("type");      
-        att8.value = "checkbox";                          
-        chk.setAttributeNode(att8);
-        var att9 = document.createAttribute("value");       
-        att9.value = json[i].name+" "+json[i].link;                       
-        chk.setAttributeNode(att9);
-        a.appendChild(img);
-        a.appendChild(span1);
-        a.appendChild(span2);
-        li.appendChild(a);
-        li.appendChild(chk);
-        var ul1 = document.getElementById("rig1");
-        ul1.appendChild(li);
-      }
-      var div1 = document.getElementById("u1011");
-      var btn = document.createElement("button");
-      var att11 = document.createAttribute("class");      
-      att11.value = "button";                          
-      btn.setAttributeNode(att11);
-      var att12 = document.createAttribute("onclick");       
-      att12.value = "printChecked()";                           
-      btn.setAttributeNode(att12);
-      var desc = document.createTextNode("Recommend selected videos");
-      btn.appendChild(desc);
-      div1.appendChild(btn);
-    });
-    $.getJSON("recommendations/shivam_recommendations.json", function(json) {
-      for (var i = 0; i < json.length; i++) {
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        var att = document.createAttribute("class");     
-        att.value = "rig-cell";                          
-        a.setAttributeNode(att);
-        var att1 = document.createAttribute("id");     
-        att1.value = json[i].link;                          
-        a.setAttributeNode(att1);
-        a.addEventListener("click", function(){
-          document.getElementById("myVideo").remove();
-          var new_vid = document.createElement("video");
-          var att1 = document.createAttribute("id");
-          att1.value = "myVideo";
-          new_vid.setAttributeNode(att1);
-          var att2 = document.createAttribute("width");     
-          att2.value = "600";                          
-          new_vid.setAttributeNode(att2);
-          var att3 = document.createAttribute("height");     
-          att3.value = "400";                          
-          new_vid.setAttributeNode(att3);
-          var att4 = document.createAttribute("controls");     
-          new_vid.setAttributeNode(att4);
-          var vid_src = document.createElement("source");
-          var att5 = document.createAttribute("src");
-          att5.value = "videos/"+this.id+".mp4";                          
-          vid_src.setAttributeNode(att5);
-          var att6 = document.createAttribute("type");     
-          att6.value = "video/mp4";   
-          vid_src.setAttributeNode(att6);
-          new_vid.appendChild(vid_src);
-          document.getElementById("u1212").appendChild(new_vid);
-          document.getElementById("rally_json").remove();
-          var rally_json = document.createElement("div");
-          var att7 = document.createAttribute("class");
-          att7.value = "clip_frame colelem";
-          rally_json.setAttributeNode(att7);
-          var att8 = document.createAttribute("id");     
-          att8.value = "rally_json";                          
-          rally_json.setAttributeNode(att8);
-          document.getElementById("u1152").appendChild(rally_json);
-          $.getJSON("output/"+this.id+".json", function(json){
-            populate_json(json);
-          });
-        });
-        var img = document.createElement("img");
-        var att3 = document.createAttribute("class");      
-        att3.value = "rig-img";                           
-        img.setAttributeNode(att3);
-        var att4 = document.createAttribute("src");       
-        att4.value = "video_thumbnails/"+json[i].link+".png";                       
-        img.setAttributeNode(att4);
-        var span1 = document.createElement("span");
-        var att5 = document.createAttribute("class");      
-        att5.value = "rig-overlay";                          
-        span1.setAttributeNode(att5);
-        var span2 = document.createElement("span");
-        var att6 = document.createAttribute("class");       
-        att6.value = "rig-text";                          
-        span2.setAttributeNode(att6);
-        var desc = document.createTextNode(json[i].name);
-        span2.appendChild(desc);
-        a.appendChild(img);
-        a.appendChild(span1);
-        a.appendChild(span2);
-        li.appendChild(a);
-        var ul= document.getElementById("rig");
-        ul.appendChild(li);
-      }
-    });
-    function populate_json(json){
-      json.sort(function(a, b){
-        var keyA = a.Rally_number, keyB = b.Rally_number;
-        if(keyA < keyB) return -1;
-        if(keyA > keyB) return 1;
-        return 0;
-      });
-      var fr=json[0].frame_rate;
-      var x = 0, y=0, set=0;
-      var vid= document.getElementById("myVideo");
-      for (var i = 1; i < json.length; i++) {
-        var shot=json[i].Shots;
-        var btn = document.createElement("button");
-        if(i>1){
-          if(x>20 || y>20){
-            set++;
-            x=0;
-            y=0;
-          }
-          var prev_win = shot[0].Shot_type;
-          var prev_win1 = prev_win.split("_")[0];
-          var prev_win2 = prev_win.split("_")[1];
-          if(set%2==0){
-            if(prev_win == "Top_Serve" || (prev_win1 == "Bottom" && prev_win2 != "Serve")) x++;
-            else y++;
-          }else{
-            if(prev_win == "Top_Serve" || (prev_win1 == "Bottom" && prev_win2 != "Serve")) y++;
-            else x++;
-          }
-        }
-        var node = document.createTextNode("Score: " + y + '-' + x);
-        btn.appendChild(node);
-        var att = document.createAttribute("class");      
-        att.value = "collapsible";                           
-        btn.setAttributeNode(att);                        
-        var att3 = document.createAttribute("id");      
-        att3.value = json[i].Starting_frame-1;                         
-        btn.setAttributeNode(att3);
-        btn.addEventListener("click", function(){
-          var content = this.nextElementSibling;
-          if (content.style.maxHeight){
-            content.style.maxHeight = null;
-          } else {
-            vid.pause();
-            vid.currentTime=this.id/fr;
-            content.style.maxHeight = content.scrollHeight + "px";
-          } 
-        });
-        var element = document.getElementById("rally_json");
-        element.appendChild(btn);
-        var para = document.createElement("div");
-        var tbl = document.createElement("table");
-        var tr=document.createElement('tr');
-        var th1=document.createElement('th');
-        var th2=document.createElement('th');
-        var th3=document.createElement('th');
-        var head1 = document.createTextNode("Shot Number");
-        var head2 = document.createTextNode("Player");
-        var head3 = document.createTextNode("Shot Type");
-        th1.appendChild(head1);
-        th2.appendChild(head2);
-        th3.appendChild(head3);
-        tr.appendChild(th1);
-        tr.appendChild(th2);
-        tr.appendChild(th3);
-        tbl.appendChild(tr);
-        for(var j=0;j<shot.length;j++) {
-          var tr=document.createElement('tr');
-          var td1 = document.createElement('td');
-          var td2 = document.createElement('td');
-          var td3 = document.createElement('td');
-          var td4 = document.createElement('td');
-          var para_txt = document.createTextNode(shot[j].Shot_number);
-          var para_txt2 = document.createTextNode(shot[j].Shot_type.split("_")[0]);
-          var para_txt3 = document.createTextNode(shot[j].Shot_type.split("_")[1]);
-          td1.appendChild(para_txt);
-          td2.appendChild(para_txt2);
-          td3.appendChild(para_txt3);
-          tr.appendChild(td1);
-          tr.appendChild(td2);
-          tr.appendChild(td3);
-          tbl.appendChild(tr);
-          para.appendChild(tbl);
-          var att1 = document.createAttribute("class");     
-          att1.value = "content";                           
-          para.setAttributeNode(att1);
-          element.appendChild(para);
-          var att4 = document.createAttribute("id");       
-          att4.value = shot[j].Starting_frame;                         
-          tr.setAttributeNode(att4);
-          tr.addEventListener("click", function(){
-             vid.currentTime=this.id/fr;
-             vid.play();
-          });
-        }
-      }
-    }
-    $.getJSON("output/Wang-v-Nehwal.json", function(json){
-      populate_json(json);
-    });
-  </script>
-  <script type="text/javascript">
-    function printChecked(){
-      var items=document.getElementsByName('recommended');
-      var selectedItems="";
-      var jsn = []
-      for(var i=0; i<items.length; i++){
-        if(items[i].type=='checkbox' && items[i].checked==true){
-          //selectedItems+=items[i].value+"\n";
-          var obj = new Object();
-          obj.name = (items[i].value).split(" ")[0];
-          obj.link  = (items[i].value).split(" ")[1];
-          var jsonString= JSON.stringify(obj);
-          jsn.push(jsonString)
-        }
-      }
-      console.log(jsn);
-    }
-  </script>
 </body>
 </html>
