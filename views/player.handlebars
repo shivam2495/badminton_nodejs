@@ -105,20 +105,20 @@
               </div>
               <div class="container">
                 <div class="custom-select">
-                  <select id="ddlViewBy" onchange="myFunction()">
-                    <option>Select Shot</option>
-                    <option value="0">Backhand</option>
-                    <option value="1">Smash</option>
-                    <option value="2">Fronthand</option>
-                    <option value="3">Serve</option>
-                    <option value="4">All</option>
+                  <select id="select_shot" onchange="filter()">
+                    <option>All</option>
+                    <option>Backhand</option>
+                    <option>Smash</option>
+                    <option>Fronthand</option>
+                    <option>Serve</option>
+                    <option>Lob</option>
                   </select>
                 </div>
                 <div class="custom-select1">
-                  <select id="Player" onchange="myFunction()">
-                    <option>Select Player</option>
-                    <option value="0">Top</option>
-                    <option value="1">Bottom</option>
+                  <select id="select_player" onchange="filter()">
+                    <option disabled selected>Select Player</option>
+                    <option>Top</option>
+                    <option>Bottom</option>
                   </select>
                 </div>
               </div>

@@ -25,7 +25,7 @@ con.connect(function(err) {
 con.query('use badminton;', function(err, results) {
 	if (err) throw err;
 	console.log("db selected");
-})
+});
 app.get('/', (req, res)=>{
 	res.render('index')
 });

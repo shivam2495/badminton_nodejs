@@ -1,0 +1,138 @@
+<html>
+<body>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script>
+      $.getJSON("Baun-Augustyn-GrpG-LondonOlympics-2012.json", function(json) {
+      json.sort(function(a, b){
+      var keyA = a.Rally_number, keyB = b.Rally_number;
+      if(keyA < keyB) return -1;
+      if(keyA > keyB) return 1;
+      return 0;
+      });
+      var t_backhand=0,t_fronthand=0,t_smash=0,t_lob=0,b_backhand=0,b_fronthand=0,b_smash=0,b_lob=0;
+      var fr_rate=json[0].frame_rate;
+      for (var i = 1; i < json.length; i++) {
+  	     var shot=json[i].Shots;
+
+         for(var j=0;j<shot.length;j++)
+         {
+           var St_fr=shot[j].Starting_frame;
+           var En_fr=shot[j].Ending_frame;
+           if (typeof St_fr !== "undefined" && typeof En_fr !== "undefined") {
+
+		         var Str_Pos=shot[j].Starting_position;
+		         var End_Pos=shot[j].Ending_position;
+		         var top1=Str_Pos.Top_player;
+		         var bottom1=Str_Pos.Bottom_player;
+		         var top2=End_Pos.Top_player;
+		         var bottom2=End_Pos.Bottom_player;
+		         var btn = document.createElement("button");
+//		         var para_txt3 = document.createTextNode(shot[j].Shot_type.split("_")[1]);
+		         var p=shot[j].Shot_type;
+		         if(p.localeCompare("Top_Backhand"))
+		         {
+		           t_backhand++;
+		         }
+		         if(p.localeCompare("Top_Fronthand"))
+		         {
+		           t_fronthand++;
+		         }
+		         if(p.localeCompare("Top_Smash"))
+		         {
+		           t_smash++;
+		         }
+		         if(p.localeCompare("Top_Lob"))
+		         {
+		           t_lob++;
+		         }
+		         if(p.localeCompare("Bottom_Backhand"))
+		         {
+		           b_backhand++;
+		         }
+		         if(p.localeCompare("Bottom_Fronthand"))
+		         {
+		           b_fronthand++;
+		         }
+		         if(p.localeCompare("Bottom_Smash"))
+		         {
+		           b_smash++;
+		         }
+		         if(p.localeCompare("Bottom_Lob"))
+		         {
+		           b_lob++;
+		         }
+           }
+
+         }
+         }
+         var t_total=t_backhand+t_fronthand+t_smash+t_lob;
+         var t_Backhand_per=(t_backhand/t_total)*100;
+         var t_Fronthand_per=(t_fronthand/t_total)*100;
+         var t_Smash_per=(t_smash/t_total)*100;
+         var t_Lob_per=(t_lob/t_total)*100;
+
+         var t_btn_Backhand = document.getElementById("T_Backhand");
+         var t_btn_Fronthand = document.getElementById("T_Fronthand");
+         var t_btn_Smash = document.getElementById("T_Smash");
+         var t_btn_Lob = document.getElementById("T_Lob");
+
+		       t_btn_Backhand.addEventListener("click", function(){
+						alert(t_Backhand_per);
+		       });
+		       t_btn_Fronthand.addEventListener("click", function(){
+						alert(t_Fronthand_per);
+		       });
+		       t_btn_Smash.addEventListener("click", function(){
+						alert(t_Smash_per);
+		       });
+		       t_btn_Lob.addEventListener("click", function(){
+						alert(t_Lob_per);
+		       });
+
+
+         var b_total=b_backhand+b_fronthand+b_smash+b_lob;
+         var b_Backhand_per=(b_backhand/b_total)*100;
+         var b_Fronthand_per=(b_fronthand/b_total)*100;
+         var b_Smash_per=(b_smash/b_total)*100;
+         var b_Lob_per=(b_lob/b_total)*100;
+
+         var b_btn_Backhand = document.getElementById("B_Backhand");
+         var b_btn_Fronthand = document.getElementById("B_Fronthand");
+         var b_btn_Smash = document.getElementById("B_Smash");
+         var b_btn_Lob = document.getElementById("B_Lob");
+
+		       b_btn_Backhand.addEventListener("click", function(){
+						alert(b_Backhand_per);
+		       });
+		       b_btn_Fronthand.addEventListener("click", function(){
+						alert(b_Fronthand_per);
+		       });
+		       b_btn_Smash.addEventListener("click", function(){
+						alert(b_Smash_per);
+		       });
+		       b_btn_Lob.addEventListener("click", function(){
+						alert(b_Lob_per);
+		       });
+
+        });
+
+  </script>
+  <div class="percentages">
+  	<h1>Percentages of Top Player shots</h1>
+  	<button id="T_Backhand">Backhand</button>
+  	<button id="T_Fronthand">Fronthand</button>
+  	<button id="T_Smash">Smash</button>
+  	<button id="T_Lob">Lob</button>
+
+<br />
+<br />
+
+  	<h1>Percentages of Bottom Player shots</h1>
+  	<button id="B_Backhand">Backhand</button>
+  	<button id="B_Fronthand">Fronthand</button>
+  	<button id="B_Smash">Smash</button>
+  	<button id="B_Lob">Lob</button>
+
+  </div>
+</body>
+</html>

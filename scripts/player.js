@@ -1,3 +1,65 @@
+var json_file = "Wang-v-Nehwal";
+function filter(){
+  var player = document.getElementById("select_player").selectedIndex;
+  clear_json();
+  switch(document.getElementById("select_shot").selectedIndex){
+    case 1:
+      if(player==1) populate_json("Backhand", "Top");
+      else if(player==2) populate_json("Backhand", "Bottom");
+      else populate_json("Backhand", "all");
+      break;
+    case 2:
+      if(player==1) populate_json("Smash", "Top");
+      else if(player==2) populate_json("Smash", "Bottom");
+      else populate_json("Smash", "all");
+      break;
+    case 3:
+      if(player==1) populate_json("Fronthand", "Top");
+      else if(player==2) populate_json("Fronthand", "Bottom");
+      else populate_json("Fronthand", "all");
+      break;
+    case 4:
+      if(player==1) populate_json("Serve", "Top");
+      else if(player==2) populate_json("Serve", "Bottom");
+      else populate_json("Serve", "all");
+      break;
+    case 5:
+      if(player==1) populate_json("Lob", "Top");
+      else if(player==2) populate_json("Lob", "Bottom");
+      else populate_json("Lob", "all");
+      break;
+    default:
+      if(player==1) populate_json("all", "Top");
+      else if(player==2) populate_json("all", "Bottom");
+      else populate_json("all", "all");
+      break;
+  }
+  clean_json();
+}
+
+function clear_json(){
+  document.getElementById("rally_json").remove();
+  var rally_json = document.createElement("div");
+  var att1 = document.createAttribute("id");
+  att1.value = "rally_json";
+  rally_json.setAttributeNode(att1);
+  var att2 = document.createAttribute("class");
+  att2.value = "clip_frame colelem";
+  rally_json.setAttributeNode(att2);
+  document.getElementById("u1152").appendChild(rally_json);
+}
+
+function clean_json(){
+  $.getJSON("output/"+json_file+".json", function(json){
+    for(var i = 1; i < json.length; i++){
+      var rally_elem = document.getElementById(json[i].Starting_frame-1);
+      if(rally_elem !== null)
+        if(rally_elem.nextElementSibling.className == "collapsible")
+          rally_elem.remove();
+    }
+  });
+}
+
 function printChecked(){
   var items=document.getElementsByName('recommended');
   var selectedItems="";
@@ -17,23 +79,24 @@ function printChecked(){
 function recom_vid_config(i, json){
   var li = document.createElement("li");
   var a = document.createElement("a");
-  var att = document.createAttribute("class");       
-  att.value = "rig-cell";                           
+  var att = document.createAttribute("class");
+  att.value = "rig-cell";
   a.setAttributeNode(att);
-  var att1 = document.createAttribute("id");     
-  att1.value = json[i].link;                          
+  var att1 = document.createAttribute("id");
+  att1.value = json[i].link;
   a.setAttributeNode(att1);
   a.addEventListener("click", function(){
+    json_file = this.id;
     document.getElementById("myVideo").remove();
     var new_vid = document.createElement("video");
     var att1 = document.createAttribute("id");
     att1.value = "myVideo";
     new_vid.setAttributeNode(att1);
-    var att2 = document.createAttribute("width");     
-    att2.value = "600";                          
+    var att2 = document.createAttribute("width");
+    att2.value = "600";
     new_vid.setAttributeNode(att2);
-    var att3 = document.createAttribute("height");     
-    att3.value = "400";                          
+    var att3 = document.createAttribute("height");
+    att3.value = "400";
     new_vid.setAttributeNode(att3);
     var att4 = document.createAttribute("controls");     
     new_vid.setAttributeNode(att4);
@@ -55,9 +118,7 @@ function recom_vid_config(i, json){
     att8.value = "rally_json";                          
     rally_json.setAttributeNode(att8);
     document.getElementById("u1152").appendChild(rally_json);
-    $.getJSON("output/"+this.id+".json", function(json){
-      populate_json(json);
-    });
+    populate_json("all", "all");
   });
   var img = document.createElement("img");
   var att3 = document.createAttribute("class");     
@@ -83,102 +144,91 @@ function recom_vid_config(i, json){
   return li;
 }
 
-function populate_json(json){
-  json.sort(function(a, b){
-    var keyA = a.Rally_number, keyB = b.Rally_number;
-    if(keyA < keyB) return -1;
-    if(keyA > keyB) return 1;
-    return 0;
-  });
-  var fr=json[0].frame_rate;
-  var x = 0, y=0, set=0;
-  var vid= document.getElementById("myVideo");
-  for (var i = 1; i < json.length; i++) {
-    var shot=json[i].Shots;
-    var btn = document.createElement("button");
-    if(i>1){
-      if(x>20 || y>20){
-        set++;
-        x=0;
-        y=0;
-      }
-      var prev_win = shot[0].Shot_type;
-      var prev_win1 = prev_win.split("_")[0];
-      var prev_win2 = prev_win.split("_")[1];
-      if(set%2==0){
-        if(prev_win == "Top_Serve" || (prev_win1 == "Bottom" && prev_win2 != "Serve")) x++;
-        else y++;
-      }else{
-        if(prev_win == "Top_Serve" || (prev_win1 == "Bottom" && prev_win2 != "Serve")) y++;
-        else x++;
-      }
-    }
-    var node = document.createTextNode("Score: " + y + '-' + x);
-    btn.appendChild(node);
-    var att = document.createAttribute("class");      
-    att.value = "collapsible";                           
-    btn.setAttributeNode(att);                        
-    var att3 = document.createAttribute("id");      
-    att3.value = json[i].Starting_frame-1;                         
-    btn.setAttributeNode(att3);
-    btn.addEventListener("click", function(){
-      var content = this.nextElementSibling;
-      if (content.style.maxHeight){
-        content.style.maxHeight = null;
-      } else {
-        vid.pause();
-        vid.currentTime=this.id/fr;
-        content.style.maxHeight = content.scrollHeight + "px";
-      } 
+function populate_json(shot_para, player_para){
+  $.getJSON("output/"+json_file+".json", function(json){
+    json.sort(function(a, b){
+      var keyA = a.Rally_number, keyB = b.Rally_number;
+      if(keyA < keyB) return -1;
+      if(keyA > keyB) return 1;
+      return 0;
     });
-    var element = document.getElementById("rally_json");
-    element.appendChild(btn);
-    var para = document.createElement("div");
-    var tbl = document.createElement("table");
-    var tr=document.createElement('tr');
-    var th1=document.createElement('th');
-    var th2=document.createElement('th');
-    var th3=document.createElement('th');
-    var head1 = document.createTextNode("Shot Number");
-    var head2 = document.createTextNode("Player");
-    var head3 = document.createTextNode("Shot Type");
-    th1.appendChild(head1);
-    th2.appendChild(head2);
-    th3.appendChild(head3);
-    tr.appendChild(th1);
-    tr.appendChild(th2);
-    tr.appendChild(th3);
-    tbl.appendChild(tr);
-    for(var j=0;j<shot.length;j++) {
+    var fr=json[0].frame_rate;
+    var vid= document.getElementById("myVideo");
+    for (var i = 1; i < json.length; i++) {
+      var shot=json[i].Shots;
+      var btn = document.createElement("button");
+      var node = document.createTextNode("Rally number: " + i);
+      btn.appendChild(node);
+      var att = document.createAttribute("class");      
+      att.value = "collapsible";                           
+      btn.setAttributeNode(att);
+      var att3 = document.createAttribute("id");      
+      att3.value = json[i].Starting_frame-1;                         
+      btn.setAttributeNode(att3);
+      btn.addEventListener("click", function(){
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight){
+          content.style.maxHeight = null;
+        } else {
+          vid.pause();
+          vid.currentTime=this.id/fr;
+          content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+      var element = document.getElementById("rally_json");
+      element.appendChild(btn);
+      var para = document.createElement("div");
+      var tbl = document.createElement("table");
       var tr=document.createElement('tr');
-      var td1 = document.createElement('td');
-      var td2 = document.createElement('td');
-      var td3 = document.createElement('td');
-      var td4 = document.createElement('td');
-      var para_txt = document.createTextNode(shot[j].Shot_number);
-      var para_txt2 = document.createTextNode(shot[j].Shot_type.split("_")[0]);
-      var para_txt3 = document.createTextNode(shot[j].Shot_type.split("_")[1]);
-      td1.appendChild(para_txt);
-      td2.appendChild(para_txt2);
-      td3.appendChild(para_txt3);
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-      tr.appendChild(td3);
+      var th1=document.createElement('th');
+      var th2=document.createElement('th');
+      var th3=document.createElement('th');
+      var head1 = document.createTextNode("Shot Number");
+      var head2 = document.createTextNode("Player");
+      var head3 = document.createTextNode("Shot Type");
+      th1.appendChild(head1);
+      th2.appendChild(head2);
+      th3.appendChild(head3);
+      tr.appendChild(th1);
+      tr.appendChild(th2);
+      tr.appendChild(th3);
       tbl.appendChild(tr);
-      para.appendChild(tbl);
-      var att1 = document.createAttribute("class");     
-      att1.value = "content";                           
-      para.setAttributeNode(att1);
-      element.appendChild(para);
-      var att4 = document.createAttribute("id");       
-      att4.value = shot[j].Starting_frame;                         
-      tr.setAttributeNode(att4);
-      tr.addEventListener("click", function(){
-       vid.currentTime=this.id/fr;
-       vid.play();
-     });
+      for(var j=0;j<shot.length;j++){
+        curr_player = shot[j].Shot_type.split("_")[0];
+        curr_shot = shot[j].Shot_type.split("_")[1];
+        if((shot_para==curr_shot && player_para==curr_player)||(shot_para=="all" && player_para==curr_player)
+          ||(shot_para==curr_shot && player_para=="all")||(shot_para=="all" && player_para=="all")){
+          var tr=document.createElement('tr');
+          var td1 = document.createElement('td');
+          var td2 = document.createElement('td');
+          var td3 = document.createElement('td');
+          var td4 = document.createElement('td');
+          var para_txt = document.createTextNode(shot[j].Shot_number);
+          var para_txt2 = document.createTextNode(curr_player);
+          var para_txt3 = document.createTextNode(curr_shot);
+          td1.appendChild(para_txt);
+          td2.appendChild(para_txt2);
+          td3.appendChild(para_txt3);
+          tr.appendChild(td1);
+          tr.appendChild(td2);
+          tr.appendChild(td3);
+          tbl.appendChild(tr);
+          para.appendChild(tbl);
+          var att1 = document.createAttribute("class");     
+          att1.value = "content";                           
+          para.setAttributeNode(att1);
+          element.appendChild(para);
+          var att4 = document.createAttribute("id");       
+          att4.value = shot[j].Starting_frame;                         
+          tr.setAttributeNode(att4);
+          tr.addEventListener("click", function(){
+            vid.currentTime=this.id/fr;
+            vid.play();
+          });
+        }
+      }
     }
-  }
+  });
 }
 
 $.getJSON("recommendations/library.json", function(json) {
@@ -215,6 +265,4 @@ $.getJSON("recommendations/shivam_recommendations.json", function(json) {
     document.getElementById("rig").appendChild(recom_vid_config(i, json));
 });
 
-$.getJSON("output/Wang-v-Nehwal.json", function(json){
-  populate_json(json);
-});
+populate_json("all", "all");
