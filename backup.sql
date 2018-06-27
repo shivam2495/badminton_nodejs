@@ -49,6 +49,7 @@ CREATE TABLE `player_info_table` (
 LOCK TABLES `player_info_table` WRITE;
 /*!40000 ALTER TABLE `player_info_table` DISABLE KEYS */;
 INSERT INTO `player_info_table` VALUES ('shivam','Shivam Sarkhar',5,25,20,30,25,68,23,1.3,2.4,0.8,32,140,'Baun-Augustyn-GrpG-LondonOlympics-2012.mp4');
+INSERT INTO `player_info_table` VALUES ('joga','Joga Rao',1,15,10,55,20,43,63,4.3,0.4,0.4,92,210,'Li-Xuerui-Wins-2012-Olympics.mp4');
 /*!40000 ALTER TABLE `player_info_table` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
