@@ -1,38 +1,39 @@
 var json_file = "Wang-v-Nehwal";
+var last_clicked = "none";
 function filter(){
   var player = document.getElementById("select_player").selectedIndex;
   clear_json();
   switch(document.getElementById("select_shot").selectedIndex){
     case 1:
-      if(player==1) populate_json("Backhand", "Top");
-      else if(player==2) populate_json("Backhand", "Bottom");
-      else populate_json("Backhand", "all");
-      break;
+    if(player==1) populate_json("Backhand", "Top");
+    else if(player==2) populate_json("Backhand", "Bottom");
+    else populate_json("Backhand", "all");
+    break;
     case 2:
-      if(player==1) populate_json("Smash", "Top");
-      else if(player==2) populate_json("Smash", "Bottom");
-      else populate_json("Smash", "all");
-      break;
+    if(player==1) populate_json("Smash", "Top");
+    else if(player==2) populate_json("Smash", "Bottom");
+    else populate_json("Smash", "all");
+    break;
     case 3:
-      if(player==1) populate_json("Fronthand", "Top");
-      else if(player==2) populate_json("Fronthand", "Bottom");
-      else populate_json("Fronthand", "all");
-      break;
+    if(player==1) populate_json("Fronthand", "Top");
+    else if(player==2) populate_json("Fronthand", "Bottom");
+    else populate_json("Fronthand", "all");
+    break;
     case 4:
-      if(player==1) populate_json("Serve", "Top");
-      else if(player==2) populate_json("Serve", "Bottom");
-      else populate_json("Serve", "all");
-      break;
+    if(player==1) populate_json("Serve", "Top");
+    else if(player==2) populate_json("Serve", "Bottom");
+    else populate_json("Serve", "all");
+    break;
     case 5:
-      if(player==1) populate_json("Lob", "Top");
-      else if(player==2) populate_json("Lob", "Bottom");
-      else populate_json("Lob", "all");
-      break;
+    if(player==1) populate_json("Lob", "Top");
+    else if(player==2) populate_json("Lob", "Bottom");
+    else populate_json("Lob", "all");
+    break;
     default:
-      if(player==1) populate_json("all", "Top");
-      else if(player==2) populate_json("all", "Bottom");
-      else populate_json("all", "all");
-      break;
+    if(player==1) populate_json("all", "Top");
+    else if(player==2) populate_json("all", "Bottom");
+    else populate_json("all", "all");
+    break;
   }
   clean_json();
 }
@@ -166,6 +167,8 @@ function populate_json(shot_para, player_para){
       att3.value = json[i].Starting_frame-1;                         
       btn.setAttributeNode(att3);
       btn.addEventListener("click", function(){
+        if(last_clicked !== "none")
+          document.getElementById(last_clicked).nextElementSibling.style.maxHeight = null;
         var content = this.nextElementSibling;
         if (content.style.maxHeight){
           content.style.maxHeight = null;
@@ -173,7 +176,8 @@ function populate_json(shot_para, player_para){
           vid.pause();
           vid.currentTime=this.id/fr;
           content.style.maxHeight = content.scrollHeight + "px";
-        } 
+        }
+        last_clicked = this.id;
       });
       var element = document.getElementById("rally_json");
       element.appendChild(btn);
@@ -229,6 +233,7 @@ function populate_json(shot_para, player_para){
       }
     }
   });
+  //document.getElementById("myVideo").scrollIntoView();
 }
 
 $.getJSON("recommendations/library.json", function(json) {
@@ -266,3 +271,43 @@ $.getJSON("recommendations/shivam_recommendations.json", function(json) {
 });
 
 populate_json("all", "all");
+
+
+
+
+var data1 = [
+"Chong-Wei-Lee-Wins-Quarterfinals-2012-Olympics",
+"Wang-v-Nehwal",
+"Baun-Augustyn-GrpG-LondonOlympics-2012",
+"Lin-Dan-v-Lee-Chong-Wei-2012-Olympics",
+"Li-Xuerui-Wins-2012-Olympics"
+]
+window.fetch("/compare", {method: 'POST', body: JSON.stringify(data1),
+  headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(res => {
+    var chart = new CanvasJS.Chart("chartContainer", {
+      animationEnabled: true,
+      title:{
+        text: "Playing Style Comparison"
+      },  
+      axisY: {
+        title: "Style %",
+        titleFontColor: "#4F81BC",
+        lineColor: "#4F81BC",
+        labelFontColor: "#4F81BC"
+      },
+      toolTip: {
+        shared: true
+      },
+      data: res.points
+    });
+    chart.render();
+    function toggleDataSeries(e){
+      if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        e.dataSeries.visible = false;
+      }
+      else {
+        e.dataSeries.visible = true;
+      }
+      chart.render();
+    }
+  });
