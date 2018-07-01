@@ -8,9 +8,10 @@
   <link rel="stylesheet" type="text/css" href="css/site_global.css?crc=443350757"/>
   <link rel="stylesheet" type="text/css" href="css/master_a-master.css?crc=505742877"/>
   <link rel="stylesheet" type="text/css" href="css/player.css?crc=3855062097"/>
-  <script src="scripts/jquery-3.3.1.min.js"></script>
-  <script src="scripts/player.js"></script>
-  <script src="scripts/canvasjs.min.js"></script>
+  <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="scripts/player.js"></script>
+  <script type="text/javascript" src="scripts/canvasjs.min.js"></script>
+  <script type="text/javascript" src="scripts/loader.js"></script>
 </head>
 <body>
   <div class="clearfix borderbox" id="page">
@@ -96,19 +97,88 @@
                 <a class="nonblock nontext clearfix grpelem" id="u557-6" ><p><b>{{frequency}}</b></p><br><p>Frequency</p></a>
                 <a class="nonblock nontext clearfix grpelem" id="u554-6" ><p><b>{{steps}}</b></p><br><p>Steps/Point</p></a>
               </div> -->
-              <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 
-
+              <button id="compare_btn" style="background-color: black;padding: 15px 54px;text-align: center;color: white;"><b>Compare</b></button>
               
-
+              <button id="latest_btn" style="background-color: black;padding: 15px 54px;text-align: center;color: white;"
+              onclick="match_latest();
+              document.getElementById('ppu509-4').style.display = 'block';
+              document.getElementById('chartContainer').style.display = 'none';"><b>Latest match</b></button>
               
+              <button id="avg_btn" style="background-color: black;padding: 15px 54px;text-align: center;color: white;"
+              onclick="match_avg();
+              document.getElementById('ppu509-4').style.display = 'block';
+              document.getElementById('chartContainer').style.display = 'none';"><b>Average</b></button>
+              
+              <button id="past_btn" style="background-color: black;padding: 15px 54px;text-align: center;color: white;"><b>Past matches</b></button>
+              
+              <div id="compare_popup" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h1><b>Select the matches to compare:</b></h1><br><br>
+                  <div id="select_matches_wrapper">
+                    <div id="select_matches">                 
+                    </div>
+                  </div>
+                  <button type="button" style="background-color: black;padding: 15px 20px;text-align: center;color: white;"
+                  onclick="compare_matches(returnChecked());
+                  document.getElementById('compare_popup').style.display = 'none';
+                  document.getElementById('ppu509-4').style.display = 'none';
+                  document.getElementById('chartContainer').style.display = 'block';">Compare</button>
+                </div>
+              </div>
+              <div id="past_popup" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h1><b>Select the match to view:</b></h1><br><br>
+                  <div id="select_matches_wrapper">
+                    <div id="select_matches">                 
+                    </div>
+                  </div>
+                  <button type="button" style="background-color: black;padding: 15px 20px;text-align: center;color: white;"
+                  onclick="compare_matches(returnChecked());
+                  document.getElementById('past_popup').style.display = 'none';
+                  document.getElementById('ppu509-4').style.display = 'none';
+                  document.getElementById('chartContainer').style.display = 'block';">Compare</button>
+                </div>
+              </div>
+
+
+
+              <div id="chartContainer" style="height: 370px; width: 100%;display: none"></div>
+              
+              <div class="clearfix colelem" id="ppu509-4">
+                <div class="clearfix grpelem">
+                  <div id="piechart"></div>
+                </div>
+                <div class="clearfix grpelem">
+                  <ul>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <li><b>Game Duration: <span id="duration"></span></b></li><br>
+                    <li><b>Weight: <span id="weight"></span></b></li><br>
+                    <li><b>Calories burnt: <span id="calories"></span></b></li><br>
+                    <li><b>Speed: <span id="speed"></span></b></li><br>
+                    <li><b>Reaction time: <span id="reaction"></span></b></li><br>
+                    <li><b>Heart Rate: <span id="heart_rate"></span></b></li><br>
+                  </ul>
+                </div>
+              </div>
+
+
+
+
             </div>
             <div class="clearfix colelem" id="u623-4">
               <p>VIDEO</p>
             </div>
             <div class="shadow clearfix colelem" id="u1152">
               <div class="clip_frame colelem" id="u1212">
-                <video id="myVideo" width="600" height="400" controls>{{{vid_link}}}</video>
+                <video id="myVideo" width="600" height="400" controls>{{{latest_video_link}}}</video>
               </div>
               <div class="container">
                 <div class="custom-select">
@@ -132,7 +202,23 @@
               <div class="clip_frame colelem" id="rally_json">
               </div>
             </div>
+
+
+
+
+
+
+
+
             <div class="clearfix colelem" id="u623-4">
+              <p>DOCTOR'S REMARK</p>
+            </div>
+            <div class="shadow clearfix colelem" id="u618">
+              <div class="clip_frame colelem" id="u871">
+                <b><span id="doc_recom"></span></b>
+              </div>
+            </div>
+            <!-- <div class="clearfix colelem" id="u623-4">
               <p>COACH RECOMMENDATIONS</p>
             </div>
             <div class="shadow clearfix colelem" id="u618">
@@ -149,7 +235,7 @@
                   <ul id="rig1"></ul>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

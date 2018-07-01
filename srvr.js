@@ -47,14 +47,37 @@ app.post('/compare', (req, res)=>{
 		res.json({"points": data2});
 	});
 });
-
-
+app.post('/match_list', (req, res)=>{
+	con.query('select match_name from per_match_table where uname=(?);',req.body, function(err, results) {
+		console.log(results);
+		var match_list = [];
+		for(i in results)
+			match_list.push(results[i].match_name);
+		res.json({"match_list": match_list});
+	});
+});
+app.post('/avg', (req, res)=>{
+	var selected_videos = req.body.sort();
+	con.query('select * from player_info_table where uname=(?);',req.body, function(err, results) {
+		res.json({"forehand": results[0].avg_forehand, "backhand": results[0].avg_backhand,"lob": results[0].avg_lob,"smash": results[0].avg_smash,
+			"duration":results[0].avg_match_duration, "weight":results[0].avg_weight,"calories":results[0].avg_calories_burnt,"speed":results[0].avg_speed,
+			"reaction":results[0].avg_react,"heart_rate":results[0].avg_heart_rate});
+	});
+});
+app.post('/latest', (req, res)=>{
+	var selected_videos = req.body.sort();
+	con.query('select * from per_match_table where uname=(?) order by date desc;',req.body, function(err, results) {
+		res.json({"forehand": results[0].forehand, "backhand": results[0].backhand,"lob": results[0].lob,"smash": results[0].smash,
+			"duration":results[0].match_duration, "weight":results[0].weight,"calories":results[0].calories_burnt,"speed":results[0].speed,
+			"reaction":results[0].react,"heart_rate":results[0].heart_rate, "doc_recom":results[0].recommendations});
+	});
+});
 
 
 app.post('/login', (req, res)=>{
 	con.query('select * from player_info_table where uname=\''+req.body.username+'\';', function(err, results) {
 		if (err) throw err;
-		console.log(results[0]);
+		// console.log(results[0]);
 		uname = results[0].uname;
 		name = results[0].name;
 		profile_picture = results[0].profile_picture;

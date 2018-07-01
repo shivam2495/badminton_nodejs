@@ -63,7 +63,6 @@ function clean_json(){
 
 function printChecked(){
   var items=document.getElementsByName('recommended');
-  var selectedItems="";
   var jsn = []
   for(var i=0; i<items.length; i++){
     if(items[i].type=='checkbox' && items[i].checked==true){
@@ -74,7 +73,16 @@ function printChecked(){
       jsn.push(jsonString)
     }
   }
-  console.log(jsn);
+  // console.log(jsn);
+}
+function returnChecked(){
+  var items=document.getElementsByName('selection');
+  var jsn = [];
+  for(var i=0; i<items.length; i++){
+    if(items[i].type=='checkbox' && items[i].checked==true)
+      jsn.push(items[i].value)
+  }
+  return jsn;
 }
 
 function recom_vid_config(i, json){
@@ -236,53 +244,8 @@ function populate_json(shot_para, player_para){
   //document.getElementById("myVideo").scrollIntoView();
 }
 
-$.getJSON("recommendations/library.json", function(json) {
-  for (var i = 0; i < json.length; i++) {
-    var li = recom_vid_config(i, json);
-    var chk = document.createElement("input");
-    var att7 = document.createAttribute("name");       
-    att7.value = "recommended";                           
-    chk.setAttributeNode(att7);
-    var att8 = document.createAttribute("type");      
-    att8.value = "checkbox";                          
-    chk.setAttributeNode(att8);
-    var att9 = document.createAttribute("value");       
-    att9.value = json[i].name+" "+json[i].link;
-    chk.setAttributeNode(att9);
-    li.appendChild(chk);
-    var ul1 = document.getElementById("rig1");
-    ul1.appendChild(li);
-  }
-  var btn = document.createElement("button");
-  var att11 = document.createAttribute("class");      
-  att11.value = "button";                          
-  btn.setAttributeNode(att11);
-  var att12 = document.createAttribute("onclick");       
-  att12.value = "printChecked()";                           
-  btn.setAttributeNode(att12);
-  var desc = document.createTextNode("Recommend selected videos");
-  btn.appendChild(desc);
-  document.getElementById("u1011").appendChild(btn);
-});
-
-$.getJSON("recommendations/shivam_recommendations.json", function(json) {
-  for (var i = 0; i < json.length; i++)
-    document.getElementById("rig").appendChild(recom_vid_config(i, json));
-});
-
-populate_json("all", "all");
-
-
-
-
-var data1 = [
-"Chong-Wei-Lee-Wins-Quarterfinals-2012-Olympics",
-"Wang-v-Nehwal",
-"Baun-Augustyn-GrpG-LondonOlympics-2012",
-"Lin-Dan-v-Lee-Chong-Wei-2012-Olympics",
-"Li-Xuerui-Wins-2012-Olympics"
-]
-window.fetch("/compare", {method: 'POST', body: JSON.stringify(data1),
+function compare_matches(data1){
+  window.fetch("/compare", {method: 'POST', body: JSON.stringify(data1),
   headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(res => {
     var chart = new CanvasJS.Chart("chartContainer", {
       animationEnabled: true,
@@ -311,3 +274,154 @@ window.fetch("/compare", {method: 'POST', body: JSON.stringify(data1),
       chart.render();
     }
   });
+}
+
+
+
+function match_avg(){
+  window.fetch("/avg", {method: 'POST', body: JSON.stringify(["shivam"]),
+  headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(res => {
+    console.log(res);
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+      ['Task', 'Hours per Day'],
+      ['Forehand', res.forehand],
+      ['Backhand', res.backhand],
+      ['Lob', res.lob],
+      ['Smash', res.smash],
+      ]);
+      var options = {'title':'Playing style', 'width':400, 'height':400};
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      chart.draw(data, options);
+    }
+    document.getElementById("duration").innerHTML=res.duration;
+    document.getElementById("weight").innerHTML=res.weight;
+    document.getElementById("calories").innerHTML=res.calories;
+    document.getElementById("speed").innerHTML=res.speed;
+    document.getElementById("reaction").innerHTML=res.reaction;
+    document.getElementById("heart_rate").innerHTML=res.heart_rate;
+  });
+}
+
+
+
+function match_latest(){
+  window.fetch("/latest", {method: 'POST', body: JSON.stringify(["shivam"]),
+  headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(res => {
+    console.log(res);
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+      ['Task', 'Hours per Day'],
+      ['Forehand', res.forehand],
+      ['Backhand', res.backhand],
+      ['Lob', res.lob],
+      ['Smash', res.smash],
+      ]);
+      var options = {'title':'Playing style', 'width':400, 'height':400};
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      chart.draw(data, options);
+    }
+    document.getElementById("duration").innerHTML=res.duration;
+    document.getElementById("weight").innerHTML=res.weight;
+    document.getElementById("calories").innerHTML=res.calories;
+    document.getElementById("speed").innerHTML=res.speed;
+    document.getElementById("reaction").innerHTML=res.reaction;
+    document.getElementById("heart_rate").innerHTML=res.heart_rate;
+    document.getElementById("doc_recom").innerHTML=res.doc_recom;
+  });
+}
+
+
+window.onload = function(){
+
+  // $.getJSON("recommendations/library.json", function(json) {
+  //   for (var i = 0; i < json.length; i++) {
+  //     var li = recom_vid_config(i, json);
+  //     var chk = document.createElement("input");
+  //     var att7 = document.createAttribute("name");       
+  //     att7.value = "recommended";                           
+  //     chk.setAttributeNode(att7);
+  //     var att8 = document.createAttribute("type");      
+  //     att8.value = "checkbox";                          
+  //     chk.setAttributeNode(att8);
+  //     var att9 = document.createAttribute("value");       
+  //     att9.value = json[i].name+" "+json[i].link;
+  //     chk.setAttributeNode(att9);
+  //     li.appendChild(chk);
+  //     var ul1 = document.getElementById("rig1");
+  //     ul1.appendChild(li);
+  //   }
+  //   var btn = document.createElement("button");
+  //   var att11 = document.createAttribute("class");      
+  //   att11.value = "button";                          
+  //   btn.setAttributeNode(att11);
+  //   var att12 = document.createAttribute("onclick");       
+  //   att12.value = "printChecked()";                           
+  //   btn.setAttributeNode(att12);
+  //   var desc = document.createTextNode("Recommend selected videos");
+  //   btn.appendChild(desc);
+  //   document.getElementById("u1011").appendChild(btn);
+  // });
+
+  // $.getJSON("recommendations/shivam_recommendations.json", function(json) {
+  //   for (var i = 0; i < json.length; i++)
+  //     document.getElementById("rig").appendChild(recom_vid_config(i, json));
+  // });
+
+  populate_json("all", "all");
+
+
+
+
+  match_latest();
+
+
+
+
+  var modal = document.getElementById('compare_popup');
+  var btn = document.getElementById("compare_btn");
+  var span = document.getElementsByClassName("close")[0];
+  btn.onclick = function() {
+    window.fetch("/match_list", {method: 'POST', body: JSON.stringify(["shivam"]),
+    headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(res => {
+      document.getElementById("select_matches").remove();
+      var select_matches = document.createElement("div");
+      var att1 = document.createAttribute("id");       
+      att1.value = "select_matches";
+      select_matches.setAttributeNode(att1);
+      var arr = res.match_list;
+      for (var i = 0; i < arr.length; i++) {
+        var chk = document.createElement("input");
+        var att2 = document.createAttribute("name");       
+        att2.value = "selection";                           
+        chk.setAttributeNode(att2);
+        var att3 = document.createAttribute("type");      
+        att3.value = "checkbox";                          
+        chk.setAttributeNode(att3);
+        var att4 = document.createAttribute("value");       
+        att4.value = arr[i];
+        chk.setAttributeNode(att4);
+        select_matches.appendChild(chk);
+        select_matches.appendChild(document.createTextNode(arr[i]));
+        var br = document.createElement("br");
+        var br2 = document.createElement("br");
+        select_matches.appendChild(br);
+        select_matches.appendChild(br2);
+      }
+      document.getElementById("select_matches_wrapper").appendChild(select_matches);
+      modal.style.display = "block";
+    });
+  }
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+}
