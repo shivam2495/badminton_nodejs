@@ -113,7 +113,6 @@
               <button id="past_btn" style="background-color: black;padding: 15px 54px;text-align: center;color: white;"><b>Past matches</b></button>
               
               <div id="compare_popup" class="modal">
-                <!-- Modal content -->
                 <div class="modal-content">
                   <span class="close">&times;</span>
                   <h1><b>Select the matches to compare:</b></h1><br><br>
@@ -129,23 +128,15 @@
                 </div>
               </div>
               <div id="past_popup" class="modal">
-                <!-- Modal content -->
                 <div class="modal-content">
                   <span class="close">&times;</span>
                   <h1><b>Select the match to view:</b></h1><br><br>
-                  <div id="select_matches_wrapper">
-                    <div id="select_matches">                 
-                    </div>
+                  <div id="select_matches_wrapper2">
+                    <ul id="select_matches2">              
+                    </ul>
                   </div>
-                  <button type="button" style="background-color: black;padding: 15px 20px;text-align: center;color: white;"
-                  onclick="compare_matches(returnChecked());
-                  document.getElementById('past_popup').style.display = 'none';
-                  document.getElementById('ppu509-4').style.display = 'none';
-                  document.getElementById('chartContainer').style.display = 'block';">Compare</button>
                 </div>
               </div>
-
-
 
               <div id="chartContainer" style="height: 370px; width: 100%;display: none"></div>
               
@@ -159,18 +150,15 @@
                     <br>
                     <br>
                     <br>
-                    <li><b>Game Duration: <span id="duration"></span></b></li><br>
-                    <li><b>Weight: <span id="weight"></span></b></li><br>
-                    <li><b>Calories burnt: <span id="calories"></span></b></li><br>
-                    <li><b>Speed: <span id="speed"></span></b></li><br>
-                    <li><b>Reaction time: <span id="reaction"></span></b></li><br>
-                    <li><b>Heart Rate: <span id="heart_rate"></span></b></li><br>
+                    <li><b>Game Duration: <span id="duration"></span></b> mins</li><br>
+                    <li><b>Weight: <span id="weight"></span></b> kgs</li><br>
+                    <li><b>Calories burnt: <span id="calories"></span></b> kCal</li><br>
+                    <li><b>Speed: <span id="speed"></span></b> m/s</li><br>
+                    <li><b>Reaction time: <span id="reaction"></span></b> sec</li><br>
+                    <li><b>Heart Rate: <span id="heart_rate"></span></b> bpm</li><br>
                   </ul>
                 </div>
               </div>
-
-
-
 
             </div>
             <div class="clearfix colelem" id="u623-4">
@@ -203,13 +191,6 @@
               </div>
             </div>
 
-
-
-
-
-
-
-
             <div class="clearfix colelem" id="u623-4">
               <p>DOCTOR'S REMARK</p>
             </div>
@@ -241,6 +222,7 @@
       </div>
       <div class="clearfix colelem" id="u182-6">
         <p>Copyright © 2018, International Institute of Information Technology, Hyderabad. All rights reserved</p>
+        <p id="uname" style="display: none;">{{uname}}</p>
       </div>
       <div class="clip_frame colelem" id="u203">
         <img class="block" id="u203_img" src="images/iiitlogo.png?crc=17564724" alt="" data-image-width="118" data-image-height="61"/>

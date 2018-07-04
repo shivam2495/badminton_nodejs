@@ -30,9 +30,6 @@ app.get('/', (req, res)=>{
 	res.render('index');
 });
 
-
-
-
 app.post('/compare', (req, res)=>{
 	var selected_videos = req.body.sort();
 	con.query('select backhand, forehand, lob, smash from per_match_table where match_name in(?) order by match_name;',[req.body], function(err, results) {
@@ -57,7 +54,6 @@ app.post('/match_list', (req, res)=>{
 	});
 });
 app.post('/avg', (req, res)=>{
-	var selected_videos = req.body.sort();
 	con.query('select * from player_info_table where uname=(?);',req.body, function(err, results) {
 		res.json({"forehand": results[0].avg_forehand, "backhand": results[0].avg_backhand,"lob": results[0].avg_lob,"smash": results[0].avg_smash,
 			"duration":results[0].avg_match_duration, "weight":results[0].avg_weight,"calories":results[0].avg_calories_burnt,"speed":results[0].avg_speed,
@@ -65,14 +61,19 @@ app.post('/avg', (req, res)=>{
 	});
 });
 app.post('/latest', (req, res)=>{
-	var selected_videos = req.body.sort();
 	con.query('select * from per_match_table where uname=(?) order by date desc;',req.body, function(err, results) {
 		res.json({"forehand": results[0].forehand, "backhand": results[0].backhand,"lob": results[0].lob,"smash": results[0].smash,
 			"duration":results[0].match_duration, "weight":results[0].weight,"calories":results[0].calories_burnt,"speed":results[0].speed,
 			"reaction":results[0].react,"heart_rate":results[0].heart_rate, "doc_recom":results[0].recommendations});
 	});
 });
-
+app.post('/past', (req, res)=>{
+	con.query('select * from per_match_table where match_name=(?);',req.body, function(err, results) {
+		res.json({"forehand": results[0].forehand, "backhand": results[0].backhand,"lob": results[0].lob,"smash": results[0].smash,
+			"duration":results[0].match_duration, "weight":results[0].weight,"calories":results[0].calories_burnt,"speed":results[0].speed,
+			"reaction":results[0].react,"heart_rate":results[0].heart_rate, "doc_recom":results[0].recommendations});
+	});
+});
 
 app.post('/login', (req, res)=>{
 	con.query('select * from player_info_table where uname=\''+req.body.username+'\';', function(err, results) {
@@ -98,23 +99,24 @@ app.post('/login', (req, res)=>{
 		avg_weight = results[0].avg_weight;
 		latest_video_link = results[0].latest_video_link;
 		res.render('player', {
+			uname :uname,
 			name :name,
 			profile_picture :profile_picture,
 			rank :rank,
 			matches_played :matches_played,
-			avg_backhand :avg_backhand,
-			avg_forehand :avg_forehand,
-			avg_lob :avg_lob,
-			avg_smash :avg_smash,
-			avg_dominance :avg_dominance,
-			avg_strokes_per_point :avg_strokes_per_point,
-			avg_speed :avg_speed,
-			avg_react :avg_react,
-			avg_frequency :avg_frequency,
-			avg_heart_rate :avg_heart_rate,
-			avg_calories_burnt :avg_calories_burnt,
-			avg_match_duration :avg_match_duration,
-			avg_weight :avg_weight,
+			// avg_backhand :avg_backhand,
+			// avg_forehand :avg_forehand,
+			// avg_lob :avg_lob,
+			// avg_smash :avg_smash,
+			// avg_dominance :avg_dominance,
+			// avg_strokes_per_point :avg_strokes_per_point,
+			// avg_speed :avg_speed,
+			// avg_react :avg_react,
+			// avg_frequency :avg_frequency,
+			// avg_heart_rate :avg_heart_rate,
+			// avg_calories_burnt :avg_calories_burnt,
+			// avg_match_duration :avg_match_duration,
+			// avg_weight :avg_weight,
 			latest_video_link : "<source src=\"videos/"+latest_video_link+"\" type=\"video/mp4\">"
 		});
 	});

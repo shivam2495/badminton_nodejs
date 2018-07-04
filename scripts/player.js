@@ -1,5 +1,6 @@
 var json_file = "Wang-v-Nehwal";
-var last_clicked = "none";
+// var last_clicked = "none";
+var curr_user;
 function filter(){
   var player = document.getElementById("select_player").selectedIndex;
   clear_json();
@@ -54,8 +55,8 @@ function clean_json(){
   $.getJSON("output/"+json_file+".json", function(json){
     for(var i = 1; i < json.length; i++){
       var rally_elem = document.getElementById(json[i].Starting_frame-1);
-      if(rally_elem !== null)
-        if(rally_elem.nextElementSibling.className == "collapsible")
+      if(rally_elem !== null && rally_elem.nextElementSibling !== null)
+        if(rally_elem.nextElementSibling.className === "collapsible")
           rally_elem.remove();
     }
   });
@@ -73,8 +74,8 @@ function printChecked(){
       jsn.push(jsonString)
     }
   }
-  // console.log(jsn);
 }
+
 function returnChecked(){
   var items=document.getElementsByName('selection');
   var jsn = [];
@@ -175,8 +176,8 @@ function populate_json(shot_para, player_para){
       att3.value = json[i].Starting_frame-1;                         
       btn.setAttributeNode(att3);
       btn.addEventListener("click", function(){
-        if(last_clicked !== "none")
-          document.getElementById(last_clicked).nextElementSibling.style.maxHeight = null;
+        // if(last_clicked !== "none")
+          // document.getElementById(last_clicked).nextElementSibling.style.maxHeight = null;
         var content = this.nextElementSibling;
         if (content.style.maxHeight){
           content.style.maxHeight = null;
@@ -185,7 +186,7 @@ function populate_json(shot_para, player_para){
           vid.currentTime=this.id/fr;
           content.style.maxHeight = content.scrollHeight + "px";
         }
-        last_clicked = this.id;
+        // last_clicked = this.id;
       });
       var element = document.getElementById("rally_json");
       element.appendChild(btn);
@@ -241,7 +242,7 @@ function populate_json(shot_para, player_para){
       }
     }
   });
-  //document.getElementById("myVideo").scrollIntoView();
+  document.getElementById("myVideo").scrollIntoView();
 }
 
 function compare_matches(data1){
@@ -276,12 +277,9 @@ function compare_matches(data1){
   });
 }
 
-
-
 function match_avg(){
-  window.fetch("/avg", {method: 'POST', body: JSON.stringify(["shivam"]),
+  window.fetch("/avg", {method: 'POST', body: JSON.stringify([curr_user]),
   headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(res => {
-    console.log(res);
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
@@ -292,7 +290,7 @@ function match_avg(){
       ['Lob', res.lob],
       ['Smash', res.smash],
       ]);
-      var options = {'title':'Playing style', 'width':400, 'height':400};
+      var options = {'title':'Playing style', 'width':390, 'height':390};
       var chart = new google.visualization.PieChart(document.getElementById('piechart'));
       chart.draw(data, options);
     }
@@ -305,12 +303,9 @@ function match_avg(){
   });
 }
 
-
-
 function match_latest(){
-  window.fetch("/latest", {method: 'POST', body: JSON.stringify(["shivam"]),
+  window.fetch("/latest", {method: 'POST', body: JSON.stringify([curr_user]),
   headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(res => {
-    console.log(res);
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
@@ -321,7 +316,7 @@ function match_latest(){
       ['Lob', res.lob],
       ['Smash', res.smash],
       ]);
-      var options = {'title':'Playing style', 'width':400, 'height':400};
+      var options = {'title':'Playing style', 'width':390, 'height':390};
       var chart = new google.visualization.PieChart(document.getElementById('piechart'));
       chart.draw(data, options);
     }
@@ -335,9 +330,8 @@ function match_latest(){
   });
 }
 
-
 window.onload = function(){
-
+  curr_user = document.getElementById("uname").innerHTML;
   // $.getJSON("recommendations/library.json", function(json) {
   //   for (var i = 0; i < json.length; i++) {
   //     var li = recom_vid_config(i, json);
@@ -371,22 +365,16 @@ window.onload = function(){
   //   for (var i = 0; i < json.length; i++)
   //     document.getElementById("rig").appendChild(recom_vid_config(i, json));
   // });
-
   populate_json("all", "all");
-
-
-
-
   match_latest();
-
-
-
-
-  var modal = document.getElementById('compare_popup');
-  var btn = document.getElementById("compare_btn");
+  ////////////////////////////////////////////////////////////Event Handlers////////////////////////////////////////////////////
+  var compare_popup = document.getElementById('compare_popup');
+  var past_popup = document.getElementById('past_popup');
+  var compare_btn = document.getElementById("compare_btn");
+  var past_btn = document.getElementById("past_btn");
   var span = document.getElementsByClassName("close")[0];
-  btn.onclick = function() {
-    window.fetch("/match_list", {method: 'POST', body: JSON.stringify(["shivam"]),
+  compare_btn.onclick = function() {
+    window.fetch("/match_list", {method: 'POST', body: JSON.stringify([curr_user]),
     headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(res => {
       document.getElementById("select_matches").remove();
       var select_matches = document.createElement("div");
@@ -407,21 +395,103 @@ window.onload = function(){
         chk.setAttributeNode(att4);
         select_matches.appendChild(chk);
         select_matches.appendChild(document.createTextNode(arr[i]));
-        var br = document.createElement("br");
-        var br2 = document.createElement("br");
-        select_matches.appendChild(br);
-        select_matches.appendChild(br2);
+        select_matches.appendChild(document.createElement("br"));
+        select_matches.appendChild(document.createElement("br"));
       }
       document.getElementById("select_matches_wrapper").appendChild(select_matches);
-      modal.style.display = "block";
+      compare_popup.style.display = "block";
+    });
+  }
+
+  past_btn.onclick = function() {
+    window.fetch("/match_list", {method: 'POST', body: JSON.stringify([curr_user]),
+    headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(res => {
+      document.getElementById("select_matches2").remove();
+      var select_matches2 = document.createElement("ul");
+      var att1 = document.createAttribute("id");       
+      att1.value = "select_matches2";
+      select_matches2.setAttributeNode(att1);
+      var att2 = document.createAttribute("style");       
+      att2.value = "list-style-type:none";
+      select_matches2.setAttributeNode(att2);
+      var arr = res.match_list;
+      for (var i = 0; i < arr.length; i++) {
+        var li = document.createElement("li");
+        var att3 = document.createAttribute("id");       
+        att3.value = arr[i];                           
+        li.setAttributeNode(att3);
+        var att4 = document.createAttribute("style");       
+        att4.value = "cursor: pointer;";                           
+        li.setAttributeNode(att4);
+        li.appendChild(document.createTextNode(arr[i]));
+        li.addEventListener("click", function(){
+          window.fetch("/past", {method: 'POST', body: JSON.stringify([this.id]),
+          headers: {'Content-Type': 'application/json'}}).then(res1 => res1.json()).then(res1 => {
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+              var data = google.visualization.arrayToDataTable([
+              ['Task', 'Hours per Day'],
+              ['Forehand', res1.forehand],
+              ['Backhand', res1.backhand],
+              ['Lob', res1.lob],
+              ['Smash', res1.smash],
+              ]);
+              var options = {'title':'Playing style', 'width':390, 'height':390};
+              var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+              chart.draw(data, options);
+            }
+            document.getElementById("duration").innerHTML=res1.duration;
+            document.getElementById("weight").innerHTML=res1.weight;
+            document.getElementById("calories").innerHTML=res1.calories;
+            document.getElementById("speed").innerHTML=res1.speed;
+            document.getElementById("reaction").innerHTML=res1.reaction;
+            document.getElementById("heart_rate").innerHTML=res1.heart_rate;
+            document.getElementById("doc_recom").innerHTML=res1.doc_recom;
+            document.getElementById("myVideo").remove();
+            var new_vid = document.createElement("video");
+            var att1 = document.createAttribute("id");
+            att1.value = "myVideo";
+            new_vid.setAttributeNode(att1);
+            var att2 = document.createAttribute("width");
+            att2.value = "600";
+            new_vid.setAttributeNode(att2);
+            var att3 = document.createAttribute("height");
+            att3.value = "400";
+            new_vid.setAttributeNode(att3);
+            var att4 = document.createAttribute("controls");     
+            new_vid.setAttributeNode(att4);
+            var vid_src = document.createElement("source");
+            var att5 = document.createAttribute("src");
+            att5.value = "videos/"+this.id+".mp4";                          
+            vid_src.setAttributeNode(att5);
+            var att6 = document.createAttribute("type");     
+            att6.value = "video/mp4";   
+            vid_src.setAttributeNode(att6);
+            new_vid.appendChild(vid_src);
+            document.getElementById("u1212").appendChild(new_vid);
+            json_file = this.id;
+            clear_json();
+            populate_json("all","all");
+            past_popup.style.display = "none";
+          });
+        });
+        select_matches2.appendChild(li);
+        select_matches2.appendChild(document.createElement("br"));
+        select_matches2.appendChild(document.createElement("br"));
+      }
+      document.getElementById("select_matches_wrapper2").appendChild(select_matches2);
+      past_popup.style.display = "block";
     });
   }
   span.onclick = function() {
-      modal.style.display = "none";
+      compare_popup.style.display = "none";
+      past_popup.style.display = "none";
   }
   window.onclick = function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
+      if (event.target == compare_popup)
+          compare_popup.style.display = "none";
+      if (event.target == past_popup)
+          past_popup.style.display = "none";
   }
 }

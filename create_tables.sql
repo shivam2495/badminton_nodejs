@@ -48,7 +48,7 @@ CREATE TABLE `player_info_table` (
 
 CREATE TABLE `per_match_table` (
   `uname` varchar(20) NOT NULL,
-  `match_name` varchar(100) DEFAULT NULL,
+  `match_name` varchar(100) NOT NULL,
   `backhand` float DEFAULT '25',
   `forehand` float DEFAULT '25',
   `lob` float DEFAULT '25',
@@ -65,7 +65,7 @@ CREATE TABLE `per_match_table` (
   `video_link` varchar(100) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `recommendations` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`uname`)
+  PRIMARY KEY (`match_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
