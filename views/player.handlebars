@@ -105,6 +105,22 @@
               
               <button id="past_btn" style="background-color:black;padding:15px 54px;text-align:center;color:white;" onclick="match_past();"><b>Past matches</b></button>
 
+              <div class="clearfix colelem" id="single_pie">
+                <div class="clearfix grpelem">
+                  <div id="piechart"></div>
+                </div>
+                <div class="clearfix grpelem">
+                  <ul>
+                    <li style="margin-top: 80px"><b>Game Duration: <span id="duration"></span></b> mins</li><br>
+                    <li><b>Weight: <span id="weight"></span></b> kgs</li><br>
+                    <li><b>Calories burnt: <span id="calories"></span></b> kCal</li><br>
+                    <li><b>Speed: <span id="speed"></span></b> m/s</li><br>
+                    <li><b>Reaction time: <span id="reaction"></span></b> sec</li><br>
+                    <li><b>Heart Rate: <span id="heart_rate"></span></b> bpm</li><br>
+                  </ul>
+                </div>
+              </div>
+
               <div id="past_popup" class="clearfix colelem" style="display:none;">
                   <h1><b><br>Select the match to view:</b></h1><br><br>
                   <div id="select_matches_wrapper2">
@@ -125,22 +141,6 @@
 
               <div id="chartContainer" style="height: 370px; width: 100%;display: none;margin-top: 20px"></div>
               <div id="chartContainer1" style="height: 370px; width: 100%;display: none;margin-top: 20px"></div>
-
-              <div class="clearfix colelem" id="single_pie">
-                <div class="clearfix grpelem">
-                  <div id="piechart"></div>
-                </div>
-                <div class="clearfix grpelem">
-                  <ul>
-                    <li style="margin-top: 80px"><b>Game Duration: <span id="duration"></span></b> mins</li><br>
-                    <li><b>Weight: <span id="weight"></span></b> kgs</li><br>
-                    <li><b>Calories burnt: <span id="calories"></span></b> kCal</li><br>
-                    <li><b>Speed: <span id="speed"></span></b> m/s</li><br>
-                    <li><b>Reaction time: <span id="reaction"></span></b> sec</li><br>
-                    <li><b>Heart Rate: <span id="heart_rate"></span></b> bpm</li><br>
-                  </ul>
-                </div>
-              </div>
 
             </div>
             <div class="clearfix colelem" id="u623-4">

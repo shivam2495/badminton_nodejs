@@ -229,6 +229,37 @@ function recom_vid_config(i, json){
   return li;
 }
 
+function div_display(a, b, c, d, e){
+  past_popup.style.display=a;
+  compare_popup.style.display=b;
+  single_pie.style.display=c;
+  chartContainer.style.display=d;
+  chartContainer1.style.display=e;
+}
+
+function stat_update(res){
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+    ['Task', 'Percentage of shots played'],
+    ['Forehand', res.forehand],
+    ['Backhand', res.backhand],
+    ['Lob', res.lob],
+    ['Smash', res.smash],
+    ]);
+    var options = {'title':'Playing style', 'width':500, 'height':300};
+    var chart = new google.visualization.PieChart(piechart);
+    chart.draw(data, options);
+  }
+  duration.innerHTML=res.duration;
+  weight.innerHTML=res.weight;
+  calories.innerHTML=res.calories;
+  speed.innerHTML=res.speed;
+  reaction.innerHTML=res.reaction;
+  heart_rate.innerHTML=res.heart_rate;
+}
+
 function compare_selected_matches(data1){
   window.fetch("/compare", {method: 'POST', body: JSON.stringify(data1),
   headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(res => {
@@ -276,42 +307,7 @@ function compare_selected_matches(data1){
       chart1.render();
     }
   });
-  past_popup.style.display='none';
-  compare_popup.style.display='none';
-  single_pie.style.display='none';
-  chartContainer.style.display='block';
-  chartContainer1.style.display='block';
-}
-
-function match_avg(){
-  window.fetch("/avg", {method: 'POST', body: JSON.stringify([curr_user]),
-  headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(res => {
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-      ['Task', 'Hours per Day'],
-      ['Forehand', res.forehand],
-      ['Backhand', res.backhand],
-      ['Lob', res.lob],
-      ['Smash', res.smash],
-      ]);
-      var options = {'title':'Playing style', 'width':500, 'height':300};
-      var chart = new google.visualization.PieChart(piechart);
-      chart.draw(data, options);
-    }
-    duration.innerHTML=res.duration;
-    weight.innerHTML=res.weight;
-    calories.innerHTML=res.calories;
-    speed.innerHTML=res.speed;
-    reaction.innerHTML=res.reaction;
-    heart_rate.innerHTML=res.heart_rate;
-  });
-  past_popup.style.display='none';
-  compare_popup.style.display='none';
-  single_pie.style.display='block';
-  chartContainer.style.display='none';
-  chartContainer1.style.display='none';
+  div_display('none', 'none', 'none', 'block', 'block');
 }
 
 function match_compare(){
@@ -341,44 +337,7 @@ function match_compare(){
     }
     document.getElementById("select_matches_wrapper").appendChild(select_matches);
   });
-  past_popup.style.display='none';
-  compare_popup.style.display='block';
-  single_pie.style.display='none';
-  chartContainer.style.display='none';
-  chartContainer1.style.display='none';
-}
-
-function match_latest(){
-  window.fetch("/latest", {method: 'POST', body: JSON.stringify([curr_user]),
-  headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(res => {
-    repaint_video(res.video_link);
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-      ['Task', 'Hours per Day'],
-      ['Forehand', res.forehand],
-      ['Backhand', res.backhand],
-      ['Lob', res.lob],
-      ['Smash', res.smash],
-      ]);
-      var options = {'title':'Playing style', 'width':500, 'height':300};
-      var chart = new google.visualization.PieChart(piechart);
-      chart.draw(data, options);
-    }
-    duration.innerHTML=res.duration;
-    weight.innerHTML=res.weight;
-    calories.innerHTML=res.calories;
-    speed.innerHTML=res.speed;
-    reaction.innerHTML=res.reaction;
-    heart_rate.innerHTML=res.heart_rate;
-    doc_recom.innerHTML=res.doc_recom;
-  });
-  past_popup.style.display='none';
-  compare_popup.style.display='none';
-  single_pie.style.display='block';
-  chartContainer.style.display='none';
-  chartContainer1.style.display='none';
+  div_display('none', 'block', 'none', 'none', 'none');
 }
 
 function match_past() {
@@ -406,33 +365,10 @@ function match_past() {
         window.fetch("/past", {method: 'POST', body: JSON.stringify([this.id]),
         headers: {'Content-Type': 'application/json'}}).then(res1 => res1.json()).then(res1 => {
           repaint_video(res1.video_link);
-          google.charts.load('current', {'packages':['corechart']});
-          google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-            ['Task', 'Hours per Day'],
-            ['Forehand', res1.forehand],
-            ['Backhand', res1.backhand],
-            ['Lob', res1.lob],
-            ['Smash', res1.smash],
-            ]);
-            var options = {'title':'Playing style', 'width':500, 'height':300};
-            var chart = new google.visualization.PieChart(piechart);
-            chart.draw(data, options);
-          }
-          duration.innerHTML=res1.duration;
-          weight.innerHTML=res1.weight;
-          calories.innerHTML=res1.calories;
-          speed.innerHTML=res1.speed;
-          reaction.innerHTML=res1.reaction;
-          heart_rate.innerHTML=res1.heart_rate;
+          stat_update(res1);
           doc_recom.innerHTML=res1.doc_recom;
         });
-        past_popup.style.display='none';
-        compare_popup.style.display='none';
-        single_pie.style.display='block';
-        chartContainer.style.display='none';
-        chartContainer1.style.display='none';
+        div_display('none', 'none', 'block', 'none', 'none');
       });
       select_matches2.appendChild(li);
       select_matches2.appendChild(document.createElement("br"));
@@ -440,11 +376,25 @@ function match_past() {
     }
     document.getElementById("select_matches_wrapper2").appendChild(select_matches2);
   });
-  past_popup.style.display='block';
-  compare_popup.style.display='none';
-  single_pie.style.display='none';
-  chartContainer.style.display='none';
-  chartContainer1.style.display='none';
+  div_display('block', 'none', 'none', 'none', 'none');
+}
+
+function match_avg(){
+  window.fetch("/avg", {method: 'POST', body: JSON.stringify([curr_user]),
+  headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(res => {
+    stat_update(res);
+  });
+  div_display('none', 'none', 'block', 'none', 'none');
+}
+
+function match_latest(){
+  window.fetch("/latest", {method: 'POST', body: JSON.stringify([curr_user]),
+  headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(res => {
+    repaint_video(res.video_link);
+    stat_update(res);
+    doc_recom.innerHTML=res.doc_recom;
+  });
+  div_display('none', 'none', 'block', 'none', 'none');
 }
 
 window.onload = function(){
