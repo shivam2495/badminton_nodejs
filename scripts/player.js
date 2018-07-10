@@ -249,6 +249,22 @@ function compare_selected_matches(data1){
       data: res.points
     });
     chart.render();
+    var chart1 = new CanvasJS.Chart("chartContainer1", {
+      animationEnabled: true,
+      title:{
+        text: "Stats Comparison"
+      },  
+      axisY: {
+        titleFontColor: "#4F81BC",
+        lineColor: "#4F81BC",
+        labelFontColor: "#4F81BC"
+      },
+      toolTip: {
+        shared: true
+      },
+      data: res.stats
+    });
+    chart1.render();
     function toggleDataSeries(e){
       if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
         e.dataSeries.visible = false;
@@ -257,8 +273,14 @@ function compare_selected_matches(data1){
         e.dataSeries.visible = true;
       }
       chart.render();
+      chart1.render();
     }
   });
+  past_popup.style.display='none';
+  compare_popup.style.display='none';
+  single_pie.style.display='none';
+  chartContainer.style.display='block';
+  chartContainer1.style.display='block';
 }
 
 function match_avg(){
@@ -274,19 +296,22 @@ function match_avg(){
       ['Lob', res.lob],
       ['Smash', res.smash],
       ]);
-      var options = {'title':'Playing style', 'width':390, 'height':390};
-      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      var options = {'title':'Playing style', 'width':500, 'height':300};
+      var chart = new google.visualization.PieChart(piechart);
       chart.draw(data, options);
     }
-    document.getElementById("duration").innerHTML=res.duration;
-    document.getElementById("weight").innerHTML=res.weight;
-    document.getElementById("calories").innerHTML=res.calories;
-    document.getElementById("speed").innerHTML=res.speed;
-    document.getElementById("reaction").innerHTML=res.reaction;
-    document.getElementById("heart_rate").innerHTML=res.heart_rate;
+    duration.innerHTML=res.duration;
+    weight.innerHTML=res.weight;
+    calories.innerHTML=res.calories;
+    speed.innerHTML=res.speed;
+    reaction.innerHTML=res.reaction;
+    heart_rate.innerHTML=res.heart_rate;
   });
-  document.getElementById('ppu509-4').style.display = 'block';
-  document.getElementById('chartContainer').style.display = 'none';
+  past_popup.style.display='none';
+  compare_popup.style.display='none';
+  single_pie.style.display='block';
+  chartContainer.style.display='none';
+  chartContainer1.style.display='none';
 }
 
 function match_compare(){
@@ -310,13 +335,17 @@ function match_compare(){
       att4.value = arr[i];
       chk.setAttributeNode(att4);
       select_matches.appendChild(chk);
-      select_matches.appendChild(document.createTextNode(arr[i]));
+      select_matches.appendChild(document.createTextNode(" "+arr[i]));
       select_matches.appendChild(document.createElement("br"));
       select_matches.appendChild(document.createElement("br"));
     }
     document.getElementById("select_matches_wrapper").appendChild(select_matches);
-    compare_popup.style.display = "block";
   });
+  past_popup.style.display='none';
+  compare_popup.style.display='block';
+  single_pie.style.display='none';
+  chartContainer.style.display='none';
+  chartContainer1.style.display='none';
 }
 
 function match_latest(){
@@ -333,20 +362,23 @@ function match_latest(){
       ['Lob', res.lob],
       ['Smash', res.smash],
       ]);
-      var options = {'title':'Playing style', 'width':390, 'height':390};
-      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      var options = {'title':'Playing style', 'width':500, 'height':300};
+      var chart = new google.visualization.PieChart(piechart);
       chart.draw(data, options);
     }
-    document.getElementById("duration").innerHTML=res.duration;
-    document.getElementById("weight").innerHTML=res.weight;
-    document.getElementById("calories").innerHTML=res.calories;
-    document.getElementById("speed").innerHTML=res.speed;
-    document.getElementById("reaction").innerHTML=res.reaction;
-    document.getElementById("heart_rate").innerHTML=res.heart_rate;
-    document.getElementById("doc_recom").innerHTML=res.doc_recom;
+    duration.innerHTML=res.duration;
+    weight.innerHTML=res.weight;
+    calories.innerHTML=res.calories;
+    speed.innerHTML=res.speed;
+    reaction.innerHTML=res.reaction;
+    heart_rate.innerHTML=res.heart_rate;
+    doc_recom.innerHTML=res.doc_recom;
   });
-  document.getElementById('ppu509-4').style.display = 'block';
-  document.getElementById('chartContainer').style.display = 'none';
+  past_popup.style.display='none';
+  compare_popup.style.display='none';
+  single_pie.style.display='block';
+  chartContainer.style.display='none';
+  chartContainer1.style.display='none';
 }
 
 function match_past() {
@@ -384,78 +416,73 @@ function match_past() {
             ['Lob', res1.lob],
             ['Smash', res1.smash],
             ]);
-            var options = {'title':'Playing style', 'width':390, 'height':390};
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            var options = {'title':'Playing style', 'width':500, 'height':300};
+            var chart = new google.visualization.PieChart(piechart);
             chart.draw(data, options);
           }
-          document.getElementById("duration").innerHTML=res1.duration;
-          document.getElementById("weight").innerHTML=res1.weight;
-          document.getElementById("calories").innerHTML=res1.calories;
-          document.getElementById("speed").innerHTML=res1.speed;
-          document.getElementById("reaction").innerHTML=res1.reaction;
-          document.getElementById("heart_rate").innerHTML=res1.heart_rate;
-          document.getElementById("doc_recom").innerHTML=res1.doc_recom;
-          past_popup.style.display = "none";
+          duration.innerHTML=res1.duration;
+          weight.innerHTML=res1.weight;
+          calories.innerHTML=res1.calories;
+          speed.innerHTML=res1.speed;
+          reaction.innerHTML=res1.reaction;
+          heart_rate.innerHTML=res1.heart_rate;
+          doc_recom.innerHTML=res1.doc_recom;
         });
+        past_popup.style.display='none';
+        compare_popup.style.display='none';
+        single_pie.style.display='block';
+        chartContainer.style.display='none';
+        chartContainer1.style.display='none';
       });
       select_matches2.appendChild(li);
       select_matches2.appendChild(document.createElement("br"));
       select_matches2.appendChild(document.createElement("br"));
     }
     document.getElementById("select_matches_wrapper2").appendChild(select_matches2);
-    past_popup.style.display = "block";
   });
+  past_popup.style.display='block';
+  compare_popup.style.display='none';
+  single_pie.style.display='none';
+  chartContainer.style.display='none';
+  chartContainer1.style.display='none';
 }
 
 window.onload = function(){
   curr_user = document.getElementById("uname").innerHTML;
-  // $.getJSON("recommendations/library.json", function(json) {
-  //   for (var i = 0; i < json.length; i++) {
-  //     var li = recom_vid_config(i, json);
-  //     var chk = document.createElement("input");
-  //     var att7 = document.createAttribute("name");
-  //     att7.value = "recommended";
-  //     chk.setAttributeNode(att7);
-  //     var att8 = document.createAttribute("type");
-  //     att8.value = "checkbox";
-  //     chk.setAttributeNode(att8);
-  //     var att9 = document.createAttribute("value");
-  //     att9.value = json[i].name+" "+json[i].link;
-  //     chk.setAttributeNode(att9);
-  //     li.appendChild(chk);
-  //     var ul1 = document.getElementById("rig1");
-  //     ul1.appendChild(li);
-  //   }
-  //   var btn = document.createElement("button");
-  //   var att11 = document.createAttribute("class");
-  //   att11.value = "button";
-  //   btn.setAttributeNode(att11);
-  //   var att12 = document.createAttribute("onclick");
-  //   att12.value = "printChecked()";
-  //   btn.setAttributeNode(att12);
-  //   var desc = document.createTextNode("Recommend selected videos");
-  //   btn.appendChild(desc);
-  //   document.getElementById("u1011").appendChild(btn);
-  // });
 
-  // $.getJSON("recommendations/shivam_recommendations.json", function(json) {
-  //   for (var i = 0; i < json.length; i++)
-  //     document.getElementById("rig").appendChild(recom_vid_config(i, json));
-  // });
-  // populate_json("all", "all");
+  $.getJSON("recommendations/library.json", function(json) {
+    for (var i = 0; i < json.length; i++) {
+      var li = recom_vid_config(i, json);
+      var chk = document.createElement("input");
+      var att7 = document.createAttribute("name");
+      att7.value = "recommended";
+      chk.setAttributeNode(att7);
+      var att8 = document.createAttribute("type");
+      att8.value = "checkbox";
+      chk.setAttributeNode(att8);
+      var att9 = document.createAttribute("value");
+      att9.value = json[i].name+" "+json[i].link;
+      chk.setAttributeNode(att9);
+      li.appendChild(chk);
+      var ul1 = document.getElementById("rig1");
+      ul1.appendChild(li);
+    }
+    var btn = document.createElement("button");
+    var att11 = document.createAttribute("class");
+    att11.value = "button";
+    btn.setAttributeNode(att11);
+    var att12 = document.createAttribute("onclick");
+    att12.value = "printChecked()";
+    btn.setAttributeNode(att12);
+    var desc = document.createTextNode("Recommend selected videos");
+    btn.appendChild(desc);
+    document.getElementById("u1011").appendChild(btn);
+  });
+
+  $.getJSON("recommendations/"+curr_user+"_recommendations.json", function(json) {
+    for (var i = 0; i < json.length; i++)
+      document.getElementById("rig").appendChild(recom_vid_config(i, json));
+  });
+
   match_latest();
-  ////////////////////////////////////////////////////////////Event Handlers////////////////////////////////////////////////////
-  var compare_popup = document.getElementById('compare_popup');
-  var past_popup = document.getElementById('past_popup');
-  var span = document.getElementsByClassName("close")[0];
-  span.onclick = function() {
-      compare_popup.style.display = "none";
-      past_popup.style.display = "none";
-  }
-  window.onclick = function(event) {
-      if (event.target == compare_popup)
-          compare_popup.style.display = "none";
-      if (event.target == past_popup)
-          past_popup.style.display = "none";
-  }
 }

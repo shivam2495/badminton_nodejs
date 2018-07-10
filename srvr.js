@@ -32,17 +32,22 @@ app.get('/', (req, res)=>{
 
 app.post('/compare', (req, res)=>{
 	var selected_videos = req.body.sort();
-	con.query('select backhand, forehand, lob, smash from per_match_table where match_name in(?) order by match_name;',[req.body],
+	con.query('select * from per_match_table where match_name in(?) order by match_name;',[req.body],
 	function(err, results) {
-		var data2 = [];
+		var data1 = [], data2 = [];
 		if (err) throw err;
 		for(i in results){
-			var values = [{ "label": "Smash", "y": results[i].smash }, { "label": "Forehand", "y": results[i].forehand },
+			var values1 = [{ "label": "Smash", "y": results[i].smash }, { "label": "Forehand", "y": results[i].forehand },
 			{ "label": "Backhand", "y":results[i].backhand}, { "label": "Lob", "y": results[i].lob }];
-			var match_entry = {"name":selected_videos[i], "dataPoints":values};
-			data2.push(match_entry);
+			var match_entry1 = {"name":selected_videos[i], "dataPoints":values1};
+			var values2 = [{ "label": "Dominance (%)", "y": results[i].dominance }, { "label": "Reaction time (sec)", "y": results[i].react },
+			{ "label": "Strokes per point", "y": results[i].strokes_per_point }, { "label": "Speed (m/s)", "y":results[i].speed}, 
+			{ "label": "Frequency of movement", "y": results[i].frequency }];
+			var match_entry2 = {"name":selected_videos[i], "dataPoints":values2};
+			data1.push(match_entry1);
+			data2.push(match_entry2);
 		}
-		res.json({"points": data2});
+		res.json({"points": data1, "stats": data2});
 	});
 });
 app.post('/match_list', (req, res)=>{

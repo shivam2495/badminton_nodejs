@@ -104,47 +104,35 @@
               <button id="avg_btn" style="background-color:black;padding:15px 54px;text-align:center;color:white;" onclick="match_avg();"><b>Average</b></button>
               
               <button id="past_btn" style="background-color:black;padding:15px 54px;text-align:center;color:white;" onclick="match_past();"><b>Past matches</b></button>
-              
-              <div id="compare_popup" class="modal">
-                <div class="modal-content">
-                  <span class="close">&times;</span>
-                  <h1><b>Select the matches to compare:</b></h1><br><br>
-                  <div id="select_matches_wrapper">
-                    <div id="select_matches">                 
-                    </div>
-                  </div>
-                  <button type="button" style="background-color: black;padding: 15px 20px;text-align: center;color: white;"
-                  onclick="compare_selected_matches(returnChecked());
-                  document.getElementById('compare_popup').style.display = 'none';
-                  document.getElementById('ppu509-4').style.display = 'none';
-                  document.getElementById('chartContainer').style.display = 'block';">Compare</button>
-                </div>
-              </div>
 
-              <div id="past_popup" class="modal">
-                <div class="modal-content">
-                  <span class="close">&times;</span>
-                  <h1><b>Select the match to view:</b></h1><br><br>
+              <div id="past_popup" class="clearfix colelem" style="display:none;">
+                  <h1><b><br>Select the match to view:</b></h1><br><br>
                   <div id="select_matches_wrapper2">
                     <ul id="select_matches2">              
                     </ul>
                   </div>
-                </div>
               </div>
 
-              <div id="chartContainer" style="height: 370px; width: 100%;display: none"></div>
-              
-              <div class="clearfix colelem" id="ppu509-4">
+              <div id="compare_popup" class="clearfix colelem" style="display:none;">
+                  <h1><b><br>Select the matches to compare:</b></h1><br><br>
+                  <div id="select_matches_wrapper">
+                    <div id="select_matches">                 
+                    </div>
+                  </div>
+                  <button type="button" style="background-color:black;padding:15px 20px;text-align:center;color:white;"
+                  onclick="compare_selected_matches(returnChecked());">Compare</button>
+              </div>
+
+              <div id="chartContainer" style="height: 370px; width: 100%;display: none;margin-top: 20px"></div>
+              <div id="chartContainer1" style="height: 370px; width: 100%;display: none;margin-top: 20px"></div>
+
+              <div class="clearfix colelem" id="single_pie">
                 <div class="clearfix grpelem">
                   <div id="piechart"></div>
                 </div>
                 <div class="clearfix grpelem">
                   <ul>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <li><b>Game Duration: <span id="duration"></span></b> mins</li><br>
+                    <li style="margin-top: 80px"><b>Game Duration: <span id="duration"></span></b> mins</li><br>
                     <li><b>Weight: <span id="weight"></span></b> kgs</li><br>
                     <li><b>Calories burnt: <span id="calories"></span></b> kCal</li><br>
                     <li><b>Speed: <span id="speed"></span></b> m/s</li><br>
@@ -153,6 +141,7 @@
                   </ul>
                 </div>
               </div>
+
             </div>
             <div class="clearfix colelem" id="u623-4">
               <p>VIDEO</p>
@@ -161,8 +150,9 @@
               <div class="clip_frame colelem" id="u1212">
                 <video id="myVideo" width="600" height="400" controls>{{{latest_video_link}}}</video>
               </div>
-              <div class="container">
+              <div class="container colelem" style="margin-left:33%">
                 <div class="custom-select">
+                  Shots: 
                   <select id="select_shot" onchange="filter()">
                     <option>All</option>
                     <option>Backhand</option>
@@ -173,8 +163,9 @@
                   </select>
                 </div>
                 <div class="custom-select1">
+                  Players: 
                   <select id="select_player" onchange="filter()">
-                    <option disabled selected>Select Player</option>
+                    <option>Both</option>
                     <option>Top</option>
                     <option>Bottom</option>
                   </select>
@@ -184,14 +175,14 @@
               </div>
             </div>
             <div class="clearfix colelem" id="u623-4">
-              <p>DOCTOR'S REMARK</p>
+              <p>COACH REMARK</p>
             </div>
             <div class="shadow clearfix colelem" id="u618">
               <div class="clip_frame colelem" id="u871">
                 <b><span id="doc_recom"></span></b>
               </div>
             </div>
-            <!-- <div class="clearfix colelem" id="u623-4">
+            <div class="clearfix colelem" id="u623-4">
               <p>COACH RECOMMENDATIONS</p>
             </div>
             <div class="shadow clearfix colelem" id="u618">
@@ -208,7 +199,7 @@
                   <ul id="rig1"></ul>
                 </div>
               </div>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
@@ -222,4 +213,4 @@
     </div>
   </div>
 </body>
-</html>
+</html> 
