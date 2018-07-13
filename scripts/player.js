@@ -34,7 +34,6 @@ function filter(){
     else populate_json("all", "all");
     break;
   }
-  clean_json();
 }
 
 function printChecked(){
@@ -61,17 +60,6 @@ function returnChecked(){
   return jsn;
 }
 
-function clean_json(){
-  $.getJSON("output/"+json_file+".json", function(json){
-    for(var i = 1; i < json.length; i++){
-      var rally_elem = document.getElementById(json[i].Starting_frame-1);
-      if(rally_elem !== null && rally_elem.nextElementSibling !== null)
-        if(rally_elem.nextElementSibling.className === "collapsible")
-          rally_elem.remove();
-    }
-  });
-}
-
 function populate_json(shot_para, player_para){
   document.getElementById("rally_json").remove();
   var rally_json = document.createElement("div");
@@ -93,76 +81,71 @@ function populate_json(shot_para, player_para){
     var vid= document.getElementById("myVideo");
     for (var i = 1; i < json.length; i++) {
       var shot=json[i].Shots;
-      var btn = document.createElement("button");
-      var node = document.createTextNode("Rally number: " + i);
-      btn.appendChild(node);
-      var att = document.createAttribute("class");
-      att.value = "collapsible";
-      btn.setAttributeNode(att);
-      var att3 = document.createAttribute("id");
-      att3.value = json[i].Starting_frame-1;
-      btn.setAttributeNode(att3);
-      btn.addEventListener("click", function(){
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight){
-          content.style.maxHeight = null;
-        } else {
-          vid.pause();
-          vid.currentTime=this.id/fr;
-          content.style.maxHeight = content.scrollHeight + "px";
-        }
-      });
-      var element = document.getElementById("rally_json");
-      element.appendChild(btn);
-      var para = document.createElement("div");
       var tbl = document.createElement("table");
-      var tr=document.createElement('tr');
-      var th1=document.createElement('th');
-      var th2=document.createElement('th');
-      var th3=document.createElement('th');
-      var head1 = document.createTextNode("Shot Number");
-      var head2 = document.createTextNode("Player");
-      var head3 = document.createTextNode("Shot Type");
-      th1.appendChild(head1);
-      th2.appendChild(head2);
-      th3.appendChild(head3);
-      tr.appendChild(th1);
-      tr.appendChild(th2);
-      tr.appendChild(th3);
-      tbl.appendChild(tr);
+      var tr1 = document.createElement('tr');
+      var th1 = document.createElement('th');
+      var th2 = document.createElement('th');
+      var th3 = document.createElement('th');
+      th1.appendChild(document.createTextNode("Shot Number"));
+      th2.appendChild(document.createTextNode("Player"));
+      th3.appendChild(document.createTextNode("Shot Type"));
+      tr1.appendChild(th1);
+      tr1.appendChild(th2);
+      tr1.appendChild(th3);
+      tbl.appendChild(tr1);
+      count = 0;
       for(var j=0;j<shot.length;j++){
         curr_player = shot[j].Shot_type.split("_")[0];
         curr_shot = shot[j].Shot_type.split("_")[1];
         if((shot_para==curr_shot && player_para==curr_player)||(shot_para=="all" && player_para==curr_player)
           ||(shot_para==curr_shot && player_para=="all")||(shot_para=="all" && player_para=="all")){
-          var tr=document.createElement('tr');
+          var tr2=document.createElement('tr');
           var td1 = document.createElement('td');
           var td2 = document.createElement('td');
           var td3 = document.createElement('td');
-          var td4 = document.createElement('td');
-          var para_txt = document.createTextNode(shot[j].Shot_number);
-          var para_txt2 = document.createTextNode(curr_player);
-          var para_txt3 = document.createTextNode(curr_shot);
-          td1.appendChild(para_txt);
-          td2.appendChild(para_txt2);
-          td3.appendChild(para_txt3);
-          tr.appendChild(td1);
-          tr.appendChild(td2);
-          tr.appendChild(td3);
-          tbl.appendChild(tr);
-          para.appendChild(tbl);
-          var att1 = document.createAttribute("class");
-          att1.value = "content";
-          para.setAttributeNode(att1);
-          element.appendChild(para);
-          var att4 = document.createAttribute("id");
-          att4.value = shot[j].Starting_frame;
-          tr.setAttributeNode(att4);
-          tr.addEventListener("click", function(){
+          td1.appendChild(document.createTextNode(shot[j].Shot_number));
+          td2.appendChild(document.createTextNode(curr_player));
+          td3.appendChild(document.createTextNode(curr_shot));
+          tr2.appendChild(td1);
+          tr2.appendChild(td2);
+          tr2.appendChild(td3);
+          var att2 = document.createAttribute("id");
+          att2.value = shot[j].Starting_frame;
+          tr2.setAttributeNode(att2);
+          tr2.addEventListener("click", function(){
             vid.currentTime=this.id/fr;
             vid.play();
           });
+          tbl.appendChild(tr2);
+          count++;
         }
+      }
+      if(count>0){
+        var btn = document.createElement("button");
+        btn.appendChild(document.createTextNode("Rally number: " + i));
+        var att = document.createAttribute("class");
+        att.value = "collapsible";
+        btn.setAttributeNode(att);
+        var att3 = document.createAttribute("id");
+        att3.value = json[i].Starting_frame-1;
+        btn.setAttributeNode(att3);
+        btn.addEventListener("click", function(){
+          var content = this.nextElementSibling;
+          if (content.style.maxHeight){
+            content.style.maxHeight = null;
+          } else {
+            vid.pause();
+            vid.currentTime=this.id/fr;
+            content.style.maxHeight = content.scrollHeight + "px";
+          }
+        });
+        rally_json.appendChild(btn);
+        var para = document.createElement("div");
+        var att1 = document.createAttribute("class");
+        att1.value = "content";
+        para.setAttributeNode(att1);
+        para.appendChild(tbl);
+        rally_json.appendChild(para);
       }
     }
   });
@@ -252,12 +235,11 @@ function stat_update(res){
     var chart = new google.visualization.PieChart(piechart);
     chart.draw(data, options);
   }
-  duration.innerHTML=res.duration;
-  weight.innerHTML=res.weight;
-  calories.innerHTML=res.calories;
+  dominance.innerHTML=res.dominance;
+  frequency.innerHTML=res.frequency;
   speed.innerHTML=res.speed;
   reaction.innerHTML=res.reaction;
-  heart_rate.innerHTML=res.heart_rate;
+  strokes.innerHTML=res.strokes;
 }
 
 function compare_selected_matches(data1){
@@ -419,7 +401,7 @@ window.onload = function(){
     }
     var btn = document.createElement("button");
     var att11 = document.createAttribute("class");
-    att11.value = "button";
+    att11.value = "button1";
     btn.setAttributeNode(att11);
     var att12 = document.createAttribute("onclick");
     att12.value = "printChecked()";

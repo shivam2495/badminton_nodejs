@@ -97,26 +97,22 @@
                 <a class="nonblock nontext clearfix grpelem" id="u557-6" ><p><b>{{frequency}}</b></p><br><p>Frequency</p></a>
                 <a class="nonblock nontext clearfix grpelem" id="u554-6" ><p><b>{{steps}}</b></p><br><p>Steps/Point</p></a>
               </div> -->
-              <button id="compare_btn" style="background-color:black;padding:15px 54px;text-align:center;color:white;" onclick="match_compare();"><b>Compare</b></button>
+              <button id="latest_btn" class="button1" onclick="match_latest();"><b>Latest match</b></button>
+              <button id="avg_btn" class="button1" onclick="match_avg();"><b>Average</b></button>
+              <button id="past_btn" class="button1" onclick="match_past();"><b>Past matches</b></button>
+              <button id="compare_btn" class="button1" onclick="match_compare();"><b>Compare</b></button>
               
-              <button id="latest_btn"style="background-color:black;padding:15px 54px;text-align:center;color:white;" onclick="match_latest();"><b>Latest match</b></button>
-              
-              <button id="avg_btn" style="background-color:black;padding:15px 54px;text-align:center;color:white;" onclick="match_avg();"><b>Average</b></button>
-              
-              <button id="past_btn" style="background-color:black;padding:15px 54px;text-align:center;color:white;" onclick="match_past();"><b>Past matches</b></button>
-
               <div class="clearfix colelem" id="single_pie">
                 <div class="clearfix grpelem">
                   <div id="piechart"></div>
                 </div>
                 <div class="clearfix grpelem">
                   <ul>
-                    <li style="margin-top: 80px"><b>Game Duration: <span id="duration"></span></b> mins</li><br>
-                    <li><b>Weight: <span id="weight"></span></b> kgs</li><br>
-                    <li><b>Calories burnt: <span id="calories"></span></b> kCal</li><br>
+                    <li style="margin-top: 80px"><b>Dominance: <span id="dominance"></span></b> %</li><br>
+                    <li><b>Strokes/Point: <span id="strokes"></span></b></li><br>
                     <li><b>Speed: <span id="speed"></span></b> m/s</li><br>
                     <li><b>Reaction time: <span id="reaction"></span></b> sec</li><br>
-                    <li><b>Heart Rate: <span id="heart_rate"></span></b> bpm</li><br>
+                    <li><b>Movement Frequency: <span id="frequency"></span></b></li><br>
                   </ul>
                 </div>
               </div>
@@ -128,20 +124,17 @@
                     </ul>
                   </div>
               </div>
-
               <div id="compare_popup" class="clearfix colelem" style="display:none;">
                   <h1><b><br>Select the matches to compare:</b></h1><br><br>
                   <div id="select_matches_wrapper">
                     <div id="select_matches">                 
                     </div>
                   </div>
-                  <button type="button" style="background-color:black;padding:15px 20px;text-align:center;color:white;"
-                  onclick="compare_selected_matches(returnChecked());">Compare</button>
+                  <button class="button1" onclick="compare_selected_matches(returnChecked());">Compare</button>
               </div>
 
-              <div id="chartContainer" style="height: 370px; width: 100%;display: none;margin-top: 20px"></div>
-              <div id="chartContainer1" style="height: 370px; width: 100%;display: none;margin-top: 20px"></div>
-
+              <div id="chartContainer"></div>
+              <div id="chartContainer1"></div>
             </div>
             <div class="clearfix colelem" id="u623-4">
               <p>VIDEO</p>
