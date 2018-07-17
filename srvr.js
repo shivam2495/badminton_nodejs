@@ -14,9 +14,9 @@ app.listen(app.get('port'), ()=>{
 	console.log('listening');
 });
 var con = mysql.createConnection({
-	host: "badminton-instance.cpyxfkwkdw8m.ap-northeast-1.rds.amazonaws.com",
-	user: "iiit",
-	password: "prodtennis123"
+	host: "localhost",
+	user: "root",
+	password: ""
 });
 con.connect(function(err) {
 	if (err) throw err;
