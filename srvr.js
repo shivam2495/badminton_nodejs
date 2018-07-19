@@ -14,9 +14,12 @@ app.listen(app.get('port'), ()=>{
 	console.log('listening');
 });
 var con = mysql.createConnection({
-	host: "badminton-instance.cpyxfkwkdw8m.ap-northeast-1.rds.amazonaws.com",
-	user: "iiit",
-	password: "prodtennis123"
+	host: "localhost",
+	user: "root",
+	password: ""
+	// host: "badminton-instance.cpyxfkwkdw8m.ap-northeast-1.rds.amazonaws.com",
+	// user: "iiit",
+	// password: "prodtennis123"
 });
 con.connect(function(err) {
 	if (err) throw err;
@@ -89,6 +92,7 @@ app.post('/login', (req, res)=>{
 			name : results[0].name,
 			profile_picture : "images/" + results[0].profile_picture,
 			rank : results[0].rank,
+			coach_recom_style : (req.body.account=="coach")?"display:block;":"display:none;",
 			latest_video_link : "<source src=\"videos/"+results[0].latest_video_link+"\">"
 		});
 	});

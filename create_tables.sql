@@ -73,14 +73,7 @@ CREATE TABLE `per_match_table` (
 -- Dumping data for table `player_info_table`
 --
 
-LOCK TABLES `player_info_table` WRITE;
-/*!40000 ALTER TABLE `player_info_table` DISABLE KEYS */;
-INSERT INTO `player_info_table` VALUES ('shivam','Shivam Sarkhar','saina07082012.jpg',5,3,25,20,30,25,68,23,1.3,0.8,32,80,400,30,78,'Baun-Augustyn-GrpG-LondonOlympics-2012.mp4');
-INSERT INTO `player_info_table` VALUES ('joga','Joga Rao','playerpic3.png',1,2,15,10,55,20,43,63,4.3,0.4,92,75,300,40,68,'Li-Xuerui-Wins-2012-Olympics.mp4');
-/*!40000 ALTER TABLE `player_info_table` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
