@@ -221,20 +221,24 @@ function div_display(a, b, c, d, e){
 }
 
 function stat_update(res){
-  google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-    ['Task', 'Percentage of shots played'],
-    ['Forehand', res.forehand],
-    ['Backhand', res.backhand],
-    ['Lob', res.lob],
-    ['Smash', res.smash],
-    ]);
-    var options = {'title':'Playing style', 'width':500, 'height':300};
-    var chart = new google.visualization.PieChart(piechart);
-    chart.draw(data, options);
-  }
+  // google.charts.load('current', {'packages':['corechart']});
+  // google.charts.setOnLoadCallback(drawChart);
+  // function drawChart() {
+  //   var data = google.visualization.arrayToDataTable([
+  //   ['Task', 'Percentage of shots played'],
+  //   ['Forehand', res.forehand],
+  //   ['Backhand', res.backhand],
+  //   ['Lob', res.lob],
+  //   ['Smash', res.smash],
+  //   ]);
+  //   var options = {'title':'Playing style', 'width':500, 'height':300};
+  //   var chart = new google.visualization.PieChart(piechart);
+  //   chart.draw(data, options);
+  // }
+  smash.innerHTML=res.smash;
+  forehand.innerHTML=res.forehand;
+  backhand.innerHTML=res.backhand;
+  lob.innerHTML=res.lob;
   dominance.innerHTML=res.dominance;
   frequency.innerHTML=res.frequency;
   speed.innerHTML=res.speed;

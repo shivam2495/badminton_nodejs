@@ -42,67 +42,65 @@
               </div>
             </div>
             <div class="shadow clearfix colelem" id="u506">
-              <!-- <div class="clearfix colelem" id="ppu509-4">
-                <div class="clearfix grpelem" id="pu509-4">
-                  <div class="clearfix colelem" id="u509-4">
-                    <p><b>STYLE</b></p>
-                  </div>
-                  <a class="nonblock nontext clearfix colelem" id="u518-5" >
-                    <p id="u518-3">
-                      <span id="u518">{{s1}}</span>
-                      <span id="u518-2">%</span>
-                    </p>
-                  </a>
-                </div>
-                <div class="clearfix grpelem" id="u512-4">
-                  <p><b>GAME</b></p>
-                </div>
-                <div class="clip_frame grpelem" id="u578">
-                  <img class="block" id="u578_img" src="images/icon1.jpg?crc=341335211" data-image-width="161" data-image-height="171"/>
-                </div>
-                <a class="nonblock nontext clearfix grpelem" id="u527-5">
-                  <p id="u527-3">
-                    <span id="u527">{{dominance}}</span>
-                    <span id="u527-2">%</span>
-                  </p>
-                </a>
-                <div class="clip_frame grpelem" id="u588">
-                  <img class="block" id="u588_img" src="images/icon2.jpg?crc=346280481" data-image-width="100" data-image-height="128"/>
-                </div>
-                <div class="clearfix grpelem" id="pu515-4">
-                  <div class="clearfix colelem" id="u515-4">
-                    <p><b>AGILITY</b></p>
-                  </div>
-                  <a class="nonblock nontext clearfix colelem" id="u530-5">
-                    <p id="u530-3">
-                      <span id="u530">{{speed}}</span>
-                      <span id="u530-2">m/s</span>
-                    </p>
-                  </a>
-                </div>
-              </div>
-              <div class="clearfix colelem" id="pu521-4">
-                <a class="nonblock nontext clearfix grpelem" id="u521-4"><p>{{style1}}</p></a>
-                <a class="nonblock nontext clearfix grpelem" id="u524-4"><p>Dominance</p></a>
-                <a class="nonblock nontext clearfix grpelem" id="u533-4"><p>Speed</p></a>
-              </div>
-              <div class="clearfix colelem" id="pu536-6">
-                <a class="nonblock nontext clearfix grpelem" id="u536-6" ><p><b>{{s2}}%</b></p><br><p>{{style2}}</p></a>
-                <a class="nonblock nontext clearfix grpelem" id="u539-6" ><p><b>{{s3}}%</b></p><br><p>{{style3}}</p></a>
-                <a class="nonblock nontext clearfix grpelem" id="u542-6" ><p><b>{{s4}}%</b></p><br><p>{{style4}}</p></a>
-                <a class="nonblock nontext clearfix grpelem" id="u545-6" ><p><b>{{strokes}}</b></p><br><p>Strokes/ Point</p></a>
-                <a class="nonblock nontext clearfix grpelem" id="u548-6" ><p><b>{{serve}} s</b></p><br><p>Serve React Time</p></a>
-                <a class="nonblock nontext clearfix grpelem" id="u551-6" ><p><b>{{speed}} m/s</b></p><br><p>Speed</p></a>
-                <a class="nonblock nontext clearfix grpelem" id="u560-6" ><p><b>{{react}} s</b></p><br><p>React Time</p></a>
-                <a class="nonblock nontext clearfix grpelem" id="u557-6" ><p><b>{{frequency}}</b></p><br><p>Frequency</p></a>
-                <a class="nonblock nontext clearfix grpelem" id="u554-6" ><p><b>{{steps}}</b></p><br><p>Steps/Point</p></a>
-              </div> -->
+
               <button id="latest_btn" class="button1" onclick="match_latest();"><b>Latest match</b></button>
               <button id="avg_btn" class="button1" onclick="match_avg();"><b>Average</b></button>
               <button id="past_btn" class="button1" onclick="match_past();"><b>Past matches</b></button>
               <button id="compare_btn" class="button1" onclick="match_compare();"><b>Compare</b></button>
               
-              <div class="clearfix colelem" id="single_pie">
+              <div id="single_pie">
+	              <div class="clearfix colelem" id="ppu509-4">
+	                <div class="clearfix grpelem" id="pu509-4">
+	                  <div class="clearfix colelem" id="u509-4">
+	                    <p><b>STYLE</b></p>
+	                  </div>
+	                  <a class="nonblock nontext clearfix colelem" id="u518-5" >
+	                    <p id="u518-3">
+	                      <span id="u518"><span id="smash"></span></span>
+	                      <span id="u518-2">%</span>
+	                    </p>
+	                  </a>
+	                </div>
+	                <div class="clip_frame grpelem" id="u578">
+	                  <img class="block" id="u578_img" src="images/icon1.jpg?crc=341335211" data-image-width="161" data-image-height="171"/>
+	                </div>
+	                <a class="nonblock nontext clearfix grpelem" id="u527-5">
+	                  <p id="u527-3">
+	                    <span id="u527"><span id="dominance"></span></span>
+	                    <span id="u527-2">%</span>
+	                  </p>
+	                </a>
+	                <div class="clip_frame grpelem" id="u588">
+	                  <img class="block" id="u588_img" src="images/icon2.jpg?crc=346280481" data-image-width="100" data-image-height="128"/>
+	                </div>
+	                <div class="clearfix grpelem" id="pu515-4">
+	                  <div class="clearfix colelem" id="u515-4">
+	                    <p><b>AGILITY</b></p>
+	                  </div>
+	                  <a class="nonblock nontext clearfix colelem" id="u530-5">
+	                    <p id="u530-3">
+	                      <span id="u530"><span id="speed"></span></span>
+	                      <span id="u530-2">m/s</span>
+	                    </p>
+	                  </a>
+	                </div>
+	              </div>
+	              <div class="clearfix colelem" id="pu521-4">
+	                <a class="nonblock nontext clearfix grpelem" id="u521-4"><p>Smash</p></a>
+	                <a class="nonblock nontext clearfix grpelem" id="u524-4"><p>Dominance</p></a>
+	                <a class="nonblock nontext clearfix grpelem" id="u533-4"><p>Speed</p></a>
+	              </div>
+	              <div class="clearfix colelem" id="pu536-6">
+	                <a class="nonblock nontext clearfix grpelem" id="u536-6"><p><b><span id="forehand"></span></b> %</p><br><p>Forehand</p></a>
+	                <a class="nonblock nontext clearfix grpelem" id="u539-6"><p><b><span id="backhand"></span></b> %</p><br><p>Backhand</p></a>
+	                <a class="nonblock nontext clearfix grpelem" id="u542-6"><p><b><span id="lob"></span></b> %</p><br><p>Lob</p></a>
+	                <a class="nonblock nontext clearfix grpelem" id="u560-6"><p><b><span id="reaction"></span></b> s</p><br><p>React Time</p></a>
+	                <a class="nonblock nontext clearfix grpelem" id="u557-6"><p><b><span id="frequency"></span></b></p><br><p>Movement Frequency</p></a>
+                	<a class="nonblock nontext clearfix grpelem" id="u554-6"><p><b><span id="strokes"></span></b></p><br><p>Strokes/ Point</p></a>
+	              </div>
+              </div>
+              
+              <!-- <div class="clearfix colelem" id="single_pie">
                 <div class="clearfix grpelem">
                   <div id="piechart"></div>
                 </div>
@@ -115,7 +113,7 @@
                     <li><b>Movement Frequency: <span id="frequency"></span></b></li><br>
                   </ul>
                 </div>
-              </div>
+              </div> -->
 
               <div id="past_popup" class="clearfix colelem" style="display:none;">
                   <h1><b><br>Select the match to view:</b></h1><br><br>
@@ -135,6 +133,7 @@
 
               <div id="chartContainer"></div>
               <div id="chartContainer1"></div>
+
             </div>
             <div class="clearfix colelem" id="u623-4">
               <p>VIDEO</p>
