@@ -14,12 +14,12 @@ app.listen(app.get('port'), ()=>{
 	console.log('listening');
 });
 var con = mysql.createConnection({
-	// host: "localhost",
-	// user: "root",
-	// password: ""
-	host: "badminton-instance.cpyxfkwkdw8m.ap-northeast-1.rds.amazonaws.com",
-	user: "iiit",
-	password: "prodtennis123"
+	host: "localhost",
+	user: "root",
+	password: ""
+	// host: "badminton-instance.cpyxfkwkdw8m.ap-northeast-1.rds.amazonaws.com",
+	// user: "iiit",
+	// password: "prodtennis123"
 });
 con.connect(function(err) {
 	if (err) throw err;
