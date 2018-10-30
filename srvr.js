@@ -92,8 +92,7 @@ app.post('/login', (req, res)=>{
 			name : results[0].name,
 			profile_picture : "images/" + results[0].profile_picture,
 			rank : results[0].rank,
-			coach_recom_style : (req.body.account=="coach")?"display:block;":"display:none;",
-			latest_video_link : "<source src=\"videos/"+results[0].latest_video_link+"\">"
+			coach_recom_style : (req.body.account=="coach")?"display:block;":"display:none;"
 		});
 	});
 });

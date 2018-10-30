@@ -1,7 +1,7 @@
 LOCK TABLES `player_info_table` WRITE;
 DELETE FROM `player_info_table`;
 INSERT INTO `player_info_table` VALUES
-('admin','Saina Nehwal','saina07082012.jpg',5,3,25,20,30,25,68,23,1.3,0.8,32,80,400,30,78,'Baun-Augustyn-GrpG-LondonOlympics-2012.mp4'),
+('admin','Saina Nehwal','saina07082012.jpg',5,3,25,20,30,25,68,23,1.3,0.8,32,80,400,30,78,'Wang-v-Nehwal.mp4'),
 ('joga','Joga Rao','playerpic3.png',1,2,15,10,55,20,43,63,4.3,0.4,92,75,300,40,68,'Li-Xuerui-Wins-2012-Olympics.mp4');
 UNLOCK TABLES;
 
